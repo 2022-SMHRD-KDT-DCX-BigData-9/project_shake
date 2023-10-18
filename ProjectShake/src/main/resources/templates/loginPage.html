@@ -20,21 +20,21 @@
 </head>
 <body>
     <div class="form-background">    
-        <form action="/action_page.php" class="was-validated">
+        <form action="login/check" method = "post" class="was-validated">
             <fieldset>
                 <legend>환영합니다</legend>
                 <br>
                 <div class="form-group">
-                    <label for="uname">로그인:)</label>
-                    <input type="text" class="form-control" id="uname" placeholder="ID입력" name="uname" required>
+                    <label for="user_id">로그인:)</label>
+                    <input type="text" class="form-control" id="user_id" placeholder="Email" name="user_id" required>
                     <div class="valid-feedback">Valid.</div>
                     <div class="invalid-feedback">ID를 입력하세요</div>
                 </div>
                 <div class="form-group">
-                    <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                    <label for="user_pw">Password:</label>
+                    <input type="password" class="form-control" id="user_pw" placeholder="password" name="user_pw" required>
                     <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <div class="invalid-feedback">비밀번호를 입력해주세요.</div>
                 </div>
                 <!-- 로그인완료버튼-->
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -79,18 +79,10 @@
                     </div>
                     <!-- 회원가입완료버튼 -->
                     <button type="button" class="btn btn-outline-info">회원가입완료</button>
-    
                 </div>
             </div>
         </div>
     </div>
-    
-
-
-    
-
-
-      
       
 </body>
 </html>
