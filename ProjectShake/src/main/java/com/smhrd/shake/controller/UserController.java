@@ -17,12 +17,17 @@ public class UserController {
 	
 	@PostMapping("/login/check")
 	public String loginCheck(UserInfo user, HttpSession session) {
-		UserInfo member = service.logincheck(user);
+		UserInfo member = service.loginCheck(user);
 		if(member != null) {
 			session.setAttribute("loginMember", member);
 		} else {
 			System.out.println("로그인실패");
 		}
 		return "redirect:/mainPage";
+	}
+	
+	@PostMapping("/join/check")
+	public String joinCheck(UserInfo user) {
+		return "redirect:/login";
 	}
 }

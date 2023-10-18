@@ -12,7 +12,11 @@ public class UserService {
 	@Autowired
 	private UserMapper mapper;
 	
-	public UserInfo logincheck(UserInfo user) {
+	public UserInfo loginCheck(UserInfo user) {
 		return mapper.login(user);
+	}
+	
+	public int joinCheck(UserInfo user) {
+		return mapper.join(user);
 	}
 }

@@ -5,5 +5,9 @@
 <select id="login" parameterType="com.smhrd.shake.entity.UserInfo" resultType="com.smhrd.shake.entity.UserInfo">
 	select * from user_info where user_id = #{user_id} and user_pw = #{user_pw}
 </select>
+<insert id="join" parameterType="com.smhrd.shake.entity.UserInfo">
+	insert into () values ({user_id}, {user_pw}, {user_name}, {user_nick}, {user_birthday}, now());
+</insert>
+	
 
 </mapper>
