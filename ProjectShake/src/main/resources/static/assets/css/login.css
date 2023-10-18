@@ -25,3 +25,14 @@ input[type="text"], input[type="password"] {
     padding: 10px;
     margin: 5px 0;
 }
+.datepicker-button{
+    
+        background: url('http://jqueryui.com/resources/demos/datepicker/images/calendar.gif') no-repeat;
+        width: 20px;
+        height: 20px;
+        border: none;
+        cursor: pointer;
+        position: absolute; 
+        right: 0; 
+        top: 30%;
+}

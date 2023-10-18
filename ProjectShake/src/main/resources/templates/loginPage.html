@@ -26,8 +26,8 @@
                 <br>
                 <div class="form-group">
                     <label for="uname">로그인:)</label>
-                    <input type="text" class="form-control" id="uname" placeholder="ID입력" name="uname" required>
-                    <div class="valid-feedback">Valid.</div>
+                    <input type="email" class="form-control" id="uname" placeholder="ID입력" name="uname" required>
+                    <div class="valid-feedback">Email을 입력하세요</div>
                     <div class="invalid-feedback">ID를 입력하세요</div>
                 </div>
                 <div class="form-group">
@@ -65,32 +65,48 @@
                                 <legend>환영합니다</legend>
                                 <br>
                                 <div class="form-group">
-                                    <label for="uname">로그인:)</label>
-                                    <input type="text" class="form-control" id="uname" placeholder="ID입력" name="uname" required>
+                                    <label for="uname"></label>
+                                    <input type="email" class="form-control" id="email" placeholder="ID입력" name="user_id" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">ID를 입력하세요</div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="pwd">Password:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+                                    <label for="pwd">비밀번호:</label>
+                                    <input type="password" class="form-control" id="pw" placeholder="Enter password" name="user_pw" required>
                                     <div class="valid-feedback">Valid.</div>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="name">이름:</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="user_name" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nick">닉네임:</label>
+                                    <input type="text" class="form-control" id="nick" placeholder="Enter nick" name="user_nick" required>
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date">생년월일:</label>
+                                    <div style="position: relative;">
+                                        <input type="text" id="datepicker" placeholder="Enter your birthdate" name="user_birthdate">
+                                        <button id="openDatepicker" class="datepicker-button"></button>
+                                    </div> 
+                                    <div class="valid-feedback">Valid.</div>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                        
                     </div>
                     <!-- 회원가입완료버튼 -->
-                    <button type="button" class="btn btn-outline-info">회원가입완료</button>
+                    <button type="submit" class="btn btn-outline-info">회원가입완료</button>
     
                 </div>
             </div>
         </div>
     </div>
-    
-
-
-    
-
-
-      
-      
+          
+ <script src="assets/js/login.js"></script>     
 </body>
 </html>
