@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color:black  
+}
+.form-background{
+    background-color: yellow;
+    padding: 50px;
+    border-radius: 10px;
+    width:30%;
+    flex-direction: column;
+    align-items: center;
+}
+input[type="text"], input[type="password"] {
+    width: 100%; /* 입력 요소의 원하는 너비로 조정하세요 */
+    padding: 10px;
+    margin: 5px 0;
+}
