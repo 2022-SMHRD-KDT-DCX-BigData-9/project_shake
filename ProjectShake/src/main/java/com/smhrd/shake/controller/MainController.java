@@ -9,4 +9,9 @@ public class MainController {
 	public String introPage() {
 		return "intro";
 	}
+	
+	@GetMapping("/login")
+	public String loginPage() {
+		return "loginPage";
+	}
 }
