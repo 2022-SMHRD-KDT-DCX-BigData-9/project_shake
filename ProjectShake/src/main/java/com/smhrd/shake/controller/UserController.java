@@ -20,14 +20,22 @@ public class UserController {
 		UserInfo member = service.loginCheck(user);
 		if(member != null) {
 			session.setAttribute("loginMember", member);
+			return "redirect:/main";
 		} else {
 			System.out.println("로그인실패");
+			return "redirect:/login";
 		}
-		return "redirect:/mainPage";
 	}
 	
 	@PostMapping("/join/check")
 	public String joinCheck(UserInfo user) {
-		return "redirect:/login";
+		int row = service.joinCheck(user);
+		if (row == 1) {
+			return "redirect:/login";
+		} else {
+			System.out.println("로그인 실패"); // 자바 스크립트로 에러메세지 산출 시킬 것.
+			return "redirect:/login";
+		}
+		
 	}
 }

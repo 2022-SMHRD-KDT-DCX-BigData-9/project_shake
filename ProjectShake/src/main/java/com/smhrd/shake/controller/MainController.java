@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MainController {	
 	@GetMapping("/")
 	public String introPage() {
-		return "intro";
+		return "introPage";
 	}
 	
 	@GetMapping("/login")
@@ -15,7 +15,7 @@ public class MainController {
 		return "loginPage";
 	}
 	
-	@GetMapping("/mainPage")
+	@GetMapping("/main")
 	public String maingPage() {
 		return "mainPage";
 	}
