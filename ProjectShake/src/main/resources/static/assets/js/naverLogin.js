@@ -2,7 +2,7 @@
 const naverLogin = new naver.LoginWithNaverId({
    clientId: "XXwCsOVFr_clI402l5vD",
    callbackUrl: "http://localhost:8089/shake/naver",
-   loginButton: {color: "green", type: 1, height: 50}
+   loginButton: {color: "green", type: 1, height: 36}
 });
 
 // 네이버 로그인 초기화

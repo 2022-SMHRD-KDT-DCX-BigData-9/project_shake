@@ -19,5 +19,19 @@ public class MainController {
 	public String maingPage() { // 메인 페이지로 이동
 		return "mainPage";
 	}
+	
+	@GetMapping("/community")
+	public String community() {
+		return "community";
+	}
 
+	@GetMapping("/cockInfo")
+	public String cockInfo() {
+		return "cockInfo";
+	}
+
+	@GetMapping("/myRecipe")
+	public String myRecipe() {
+		return "myRecipe";
+	}
 }
