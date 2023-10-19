@@ -15,7 +15,7 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@PostMapping("/login/check")
+	@PostMapping("/login/check") // 로그인 서비스
 	public String loginCheck(UserInfo user, HttpSession session) {
 		UserInfo member = service.loginCheck(user);
 		if(member != null) {
@@ -27,7 +27,7 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/join/check")
+	@PostMapping("/join/check") // 회원가입 서비스
 	public String joinCheck(UserInfo user) {
 		int row = service.joinCheck(user);
 		if (row == 1) {
@@ -36,6 +36,7 @@ public class UserController {
 			System.out.println("로그인 실패"); // 자바 스크립트로 에러메세지 산출 시킬 것.
 			return "redirect:/login";
 		}
-		
 	}
+	
+	 
 }
