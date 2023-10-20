@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<title>칵테일 정보</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
+</head>
+<body class="right-sidebar is-preload">
+	<div id="page-wrapper">
+		<!-- header -->
+		<div th:replace="/header :: header"></div>
+		<!-- Main -->
+		<div id="cockBack" class="wrapper style1">
+			<!-- 검색 기능 틀-->
+			<div class="input-group">
+				<input type="search" class="form-control rounded"
+					placeholder="Search" aria-label="Search"
+					aria-describedby="search-addon" style="margin-right: 10px;" />
+				<button type="button" class="btn btn-outline-primary">search</button>
+			</div>
+			<br>
+			<!--칵테일 정보 토글 임시데이터-->
+
+			<div id="cocktailPrv">
+				<details th:each="b:${list}">
+					<!--summary에 칵테일 이름-->
+					<summary th:text="${b.cock_name}">임시데이터1</summary>
+					<!--각 p태그에 칵테일정보-->
+					<P th:text="${b.cock_desc}"></P>
+					<img src="data:image/jpeg;base64,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">
+				</details>
+			</div>
+			<hr />
+
+		</div>
+	</div>
+	<div th:replace="/footer :: footer"></div>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

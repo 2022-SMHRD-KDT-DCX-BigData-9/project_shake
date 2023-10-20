@@ -25,13 +25,8 @@ public class MainController {
 		return "communityWrite";
 	}
 	
-	@GetMapping("/cockInfo")
-	public String cockInfo() {
-		return "cockInfo";
-	}
-
-	@GetMapping("/myRecipe")
-	public String myRecipe() {
-		return "myRecipe";
+	@GetMapping("/myRecipe/write")
+	public String myrecipeWrite() {
+		return "myRecipeWrite";
 	}
 }

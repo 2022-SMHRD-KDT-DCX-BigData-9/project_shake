@@ -2672,3 +2672,9 @@ body.homepage.is-preload #header:after {
 	justify-content: center;
 	align-items: center;
 }
+
+/*communityWrite textarea 크기*/
+#textarea {
+	height: 500px;
+	resize: none;
+}

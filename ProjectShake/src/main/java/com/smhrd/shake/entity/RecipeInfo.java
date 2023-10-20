@@ -10,6 +10,7 @@ public class RecipeInfo {
 	private String user_id;
 	private String rcp_name;
 	private String rcp_ingredient;
+	private String rcp_image;
 	private String rcp_desc;
 	private Date created_at;
 	private int rcp_views;
