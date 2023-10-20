@@ -20,11 +20,11 @@ public class MainController {
 		return "mainPage";
 	}
 	
-	@GetMapping("/community")
-	public String community() {
-		return "community";
+	@GetMapping("/community/write")
+	public String comuunityWrite() {
+		return "communityWrite";
 	}
-
+	
 	@GetMapping("/cockInfo")
 	public String cockInfo() {
 		return "cockInfo";
