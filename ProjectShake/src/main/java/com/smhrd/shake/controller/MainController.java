@@ -19,5 +19,14 @@ public class MainController {
 	public String maingPage() { // 메인 페이지로 이동
 		return "mainPage";
 	}
-
+	
+	@GetMapping("/community/write")
+	public String comuunityWrite() {
+		return "communityWrite";
+	}
+	
+	@GetMapping("/myRecipe/write")
+	public String myrecipeWrite() {
+		return "myRecipeWrite";
+	}
 }

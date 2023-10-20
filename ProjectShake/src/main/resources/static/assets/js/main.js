@@ -215,3 +215,26 @@
 		});
 
 })(jQuery);
+
+// JavaScript를 사용하여 모달 열기 기능 구현
+         var modal = document.getElementById("myModal");
+         var logoutButton = document.getElementById("logout");
+
+         // 로그아웃 버튼을 클릭했을 때 모달 열기 기능 추가
+         logoutButton.addEventListener('click', function() {
+          modal.style.display = "block";
+         
+         });
+
+         // 모달 내 닫기 버튼을 클릭했을 때 모달을 닫는 기능 추가
+         var closeBtn = document.getElementsByClassName("close")[0];
+         closeBtn.onclick = function() {
+          modal.style.display = "none";
+         }
+
+         // 모달 외부를 클릭했을 때 모달을 닫는 기능 추가
+         window.onclick = function(event) {
+          if (event.target == modal) {
+           modal.style.display = "none";
+          }
+         }
