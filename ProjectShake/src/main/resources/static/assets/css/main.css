@@ -2,6 +2,9 @@
 	url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,400italic,600")
 	;
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
+
+
 @import url("fontawesome-all.min.css");
 
 /*
@@ -80,13 +83,13 @@ html {
 *, *:before, *:after {
 	box-sizing: inherit;
 }
-
+/* homepage 수정 */
 body {
 	background: #f0f4f4;
 	color: #5b5b5b;
 	font-size: 15pt;
 	line-height: 1.85em;
-	font-family: 'Source Sans Pro', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	font-weight: 300;
 }
 
@@ -1671,12 +1674,87 @@ table.default tfoot {
 }
 
 /* Button */
+#shakeOut{
+   
+   text-align: center;
+   border-radius: 0.5em;
+   text-decoration: none;
+   padding: 0.65em 3em 0.65em 3em;
+   border: 0;
+   cursor: pointer;
+   outline: 0;
+   font-weight: 300;
+   -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+}
+#shakeOut:hover{
+   background:purple;
+}
+#kakaoOut{
+
+   text-align: center;
+   border-radius: 0.5em;
+   text-decoration: none;
+   padding: 0.65em 3em 0.65em 3em;
+   border: 0;
+   cursor: pointer;
+   outline: 0;
+   font-weight: 300;
+   -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+}
+#kakaoOut:hover{
+   background: yellow;
+   color: black;
+}
+#gogleOut{
+
+   text-align: center;
+   border-radius: 0.5em;
+   text-decoration: none;
+   padding: 0.65em 3em 0.65em 3em;
+   border: 0;
+   cursor: pointer;
+   outline: 0;
+   font-weight: 300;
+   -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+}
+#gogleOut:hover{
+   background: red;
+   
+}
+#naverOut{
+
+   text-align: center;
+   border-radius: 0.5em;
+   text-decoration: none;
+   padding: 0.65em 3em 0.65em 3em;
+   border: 0;
+   cursor: pointer;
+   outline: 0;
+   font-weight: 300;
+   -moz-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -webkit-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   -ms-transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+   transition: background-color 0.35s ease-in-out, color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+}
+#naverOut:hover{
+   background: green;
+}
+
 input[type="button"], input[type="submit"], input[type="reset"], button,
 	.button {
 	position: relative;
 	display: inline-block;
-	background: #df7366;
-	color: #fff;
+	/* background: #df7366;
+	color: #fff; */
 	text-align: center;
 	border-radius: 0.5em;
 	text-decoration: none;
@@ -1787,8 +1865,8 @@ header .icon.circled {
 /* Header 헤더 이미지 변경 background-imge: url변경*/
 #header {
 	position: relative;
-	background-image:
-		url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fm.youtube.com%2Fwatch%3Fv%3D_7mGvG81Oq4&psig=AOvVaw21ALcGLJXX3l03uoTyaefi&ust=1697784304433000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCJiGzcXBgYIDFQAAAAAdAAAAABAE");
+	background: rgb(2,0,36);
+	background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(63,9,121,1) 35%, rgba(0,212,255,1) 100%);
 	background-size: cover;
 	background-position: center center;
 	background-attachment: fixed;
@@ -2677,4 +2755,35 @@ body.homepage.is-preload #header:after {
 #textarea {
 	height: 500px;
 	resize: none;
+}
+
+/* 모달에 대한 스타일 지정 */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: transparent;
+}
+.modal-content {
+    opacity: 0.9;
+  	background-color: black;
+    margin: 15% auto; 
+    backdrop-filter: blur(80px);
+    padding: 20px;
+    border: 5px solid rgba(0,0,0,0.1);
+    border-radius: 45px;
+    width: 50%; 
+    height: 670px;
+    font-size: 15pt;
+}
+.close{
+   display: none;
+}
+.logoutmodal{
+   color: white;
 }

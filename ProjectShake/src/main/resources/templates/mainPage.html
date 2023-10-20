@@ -22,7 +22,7 @@
 						<a href="main" id="logo">SHAKE</a>
 					</h1>
 					<hr />
-					<p>가나다라마바사아자 차 카 타 파 하</p>
+					<p>자신만의 칵테일을 만들어 보세요</p>
 				</header>
 				<footer>
 					<a href="main" class="button circled scrolly">Start</a>
@@ -33,7 +33,7 @@
 			<nav id="nav">
 				<ul>
 					<li><a href="main">Home</a></li>
-					<li><a href="cocktailInfo">칵테일 정보</a></li>
+					<li><a href="cocktailInfo">Cocktail</a></li>
 					<li><a href="myRecipe">My recipe</a></li>
 					<li><a href="community">community</a>
 						<ul>
@@ -43,8 +43,34 @@
 							<li><a href="#">전통주게시판</a>
 							<li><a href="">자유게시판</a></li>
 						</ul></li>
-					<li><a href="myPage">mypage</a></li>
+					<li><a href="myPage">mypage</a>
+						<ul>
+							<li><a href="#">내 정보</a></li>
+							<li><a href="#">좋아요</a></li>
+						</ul>
+					</li>
+					
+					<li><a id="logout">Logout</a></li>
 				</ul>
+				<!-- 모달 -->
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<!-- 모달 내용 -->
+						<span class="close">&times;</span> <br>
+						<div class="logoutmodal">로그아웃 하시겠습니까</div>
+						<br>
+						<!--img gif 추가-->
+						<img src="https://media.tenor.com/Za9VC5yMtlsAAAAC/bye.gif">
+						<br>
+						<button type="button" id="shakeOut" class="btn btn-primary">SHAKE</button>
+						<br>
+						<button type="button" id="kakaoOut" class="btn btn-warning">KAKAO</button>
+						<br>
+						<button type="button" id="gogleOut" class="btn btn-light">GOGLE</button>
+						<br>
+						<button type="button" id="naverOut" class="btn btn-success">NAVER</button>
+					</div>
+				</div>
 			</nav>
 
 
