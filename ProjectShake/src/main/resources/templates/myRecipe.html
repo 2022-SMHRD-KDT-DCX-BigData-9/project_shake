@@ -42,17 +42,19 @@
 									<th>글쓴이</th>
 									<th>작성일자</th>
 									<th>조회수</th>
+									<th>추천수</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="b:${list}">
 									<td th:text="${b.rcp_idx}"></td>
 									<td><a
-										th:href="@{myrecipe/{rcp_idx}(rcp_idx=${b.rcp_idx})}"
+										th:href="@{myRecipe/{rcp_idx}(rcp_idx=${b.rcp_idx})}"
 										th:text="${b.rcp_name}"></a></td>
 									<td th:text="${b.rcp_ingredient}"></td>
 									<td th:text="${b.rcp_image}"></td>
 									<td th:text="${b.rcp_views}"></td>
+									<td th:text="${b.rcp_likes}"></td>
 								</tr>
 							</tbody>
 						</table>

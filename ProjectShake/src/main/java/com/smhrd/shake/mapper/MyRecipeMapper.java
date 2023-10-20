@@ -11,4 +11,5 @@ public interface MyRecipeMapper {
 	public List<RecipeInfo> recipeList();
 	public void recipeWrite(RecipeInfo rcp);
 	public RecipeInfo recipeContent(int rcp_idx);
+	public int recipeDelete(int rcp_idx);
 }

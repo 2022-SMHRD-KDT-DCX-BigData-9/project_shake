@@ -26,7 +26,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/myRecipe/write")
-	public String myrecipeWrite() {
+	public String myRecipeWrite() {
 		return "myRecipeWrite";
 	}
 }

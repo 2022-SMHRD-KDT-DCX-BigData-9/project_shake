@@ -63,4 +63,15 @@ public class MyRecipeController {
 		System.out.println(contents.getRcp_desc());
 		return "myRecipeDetail";
 	}
+	
+	@GetMapping("myRecipe/delete/{rcp_idx}")
+	public String recipeDelete(@PathVariable("rcp_idx") int rcp_idx, Model model) throws IOException {
+		int row = service.recipeDelete(rcp_idx);
+		if (row > 0) {
+			return "redirect:/myRecipe"; // 삭제되었습니다 출력.
+		} else {
+			return "redirect:/myRecipe"; // 삭제되지 않았습니다. 출력
+		}
+	}
+
 }

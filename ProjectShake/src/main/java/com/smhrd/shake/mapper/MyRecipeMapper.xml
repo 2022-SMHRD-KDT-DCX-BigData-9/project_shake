@@ -7,7 +7,7 @@
 </select>
 
 <insert id="recipeWrite" parameterType="com.smhrd.shake.entity.RecipeInfo">
-	insert into community_info (user_id, rcp_name, rcp_ingredient, rcp_image, rcp_desc, created_at, comm_views, comm_likes) 
+	insert into recipe_info (user_id, rcp_name, rcp_ingredient, rcp_image, rcp_desc, created_at, rcp_views, rcp_likes) 
 	values (#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image}, #{rcp_desc}, now(), 1, 2)
 </insert>
 
@@ -15,5 +15,8 @@
 	select * from recipe_info where rcp_idx = #{rcp_idx}
 </select>
 
+<delete id="recipeDelete">
+	delete from recipe_info where rcp_idx = #{rcp_idx}
+</delete>
 
 </mapper>

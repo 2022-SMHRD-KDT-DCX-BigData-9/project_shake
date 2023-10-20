@@ -11,4 +11,5 @@ public interface CommunityMapper {
 	public List<CommunityInfo> commuinityList();
 	public void communityWrite(CommunityInfo comm);
 	public CommunityInfo communityContent(int comm_idx);
+	public int count(int comm_idx);
 }

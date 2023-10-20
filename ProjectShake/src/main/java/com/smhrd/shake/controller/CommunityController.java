@@ -60,7 +60,6 @@ public class CommunityController {
 	public String communityContent(@PathVariable("comm_idx") int comm_idx, Model model) throws IOException {
 		CommunityInfo contents = service.communityContent(comm_idx);
 		model.addAttribute("board", contents);
-		System.out.println(contents.getComm_content());
 		return "communityDetail";
 	}
 

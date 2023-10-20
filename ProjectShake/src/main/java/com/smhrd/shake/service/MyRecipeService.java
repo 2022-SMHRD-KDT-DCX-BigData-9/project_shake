@@ -10,6 +10,7 @@ import com.smhrd.shake.mapper.MyRecipeMapper;
 
 @Service
 public class MyRecipeService {
+	
 	@Autowired
 	 MyRecipeMapper mapper;
 	
@@ -24,5 +25,7 @@ public class MyRecipeService {
 	public RecipeInfo recipeContent(int rcp_idx) {
 		return mapper.recipeContent(rcp_idx);
 	}
-	
+	public int recipeDelete(int rcp_idx) {
+		return mapper.recipeDelete(rcp_idx);
+	}
 }

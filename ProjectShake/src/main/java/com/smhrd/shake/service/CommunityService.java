@@ -25,4 +25,8 @@ public class CommunityService {
 		return mapper.communityContent(comm_idx);
 	}
 	
+	public int count(int comm_idx) {
+		return mapper.count(comm_idx);
+	}
+	
 }
