@@ -51,10 +51,10 @@
 									<td><a
 										th:href="@{myRecipe/{rcp_idx}(rcp_idx=${b.rcp_idx})}"
 										th:text="${b.rcp_name}"></a></td>
-									<td th:text="${b.rcp_ingredient}"></td>
-									<td th:text="${b.rcp_image}"></td>
+									<td th:text="${b.user_id}"></td>
+									<td th:text="${b.created_at}"></td>
 									<td th:text="${b.rcp_views}"></td>
-									<td th:text="${b.rcp_likes}"></td>
+									<td th:text="${b.likes_count}"></td>
 								</tr>
 							</tbody>
 						</table>

@@ -29,4 +29,8 @@ public class CommunityService {
 		return mapper.count(comm_idx);
 	}
 	
+	public int communityDelete(int comm_idx) {
+		return mapper.communityDelete(comm_idx);
+	}
+	
 }

@@ -63,4 +63,13 @@ public class CommunityController {
 		return "communityDetail";
 	}
 
+	@GetMapping("community/delete/{comm_idx}")
+	public String communityDelete(@PathVariable("comm_idx") int comm_idx, Model model) throws IOException {
+		int row = service.communityDelete(comm_idx);
+		if (row > 0) {
+			return "redirect:/community"; // 삭제되었습니다 출력.
+		} else {
+			return "redirect:/myRecipe"; // 삭제되지 않았습니다. 출력
+		}
+	}
 }

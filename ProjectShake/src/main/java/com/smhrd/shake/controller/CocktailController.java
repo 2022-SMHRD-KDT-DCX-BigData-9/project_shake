@@ -25,7 +25,6 @@ public class CocktailController {
 		if (member != null) {
 			List<CocktailInfo> list = service.cocktailList();
 			model.addAttribute("list", list);
-			System.out.println(list);
 		}
 		return "cocktailInfo";
 	}

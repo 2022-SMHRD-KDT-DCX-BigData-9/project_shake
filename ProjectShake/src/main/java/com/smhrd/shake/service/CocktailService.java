@@ -17,4 +17,8 @@ public class CocktailService {
 	public List<CocktailInfo> cocktailList(){
 		return mapper.cocktailList();
 	}	
+	
+	public List<CocktailInfo> search(String input){
+		return mapper.search(input);
+	}
 }

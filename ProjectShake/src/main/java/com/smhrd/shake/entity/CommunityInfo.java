@@ -19,7 +19,7 @@ public class CommunityInfo {
 	private String comm_title;
 	private String comm_content;
 	private String comm_image;
-	private Date create_at;
+	private Date created_at;
 	private int comm_views;
 	private int comm_likes;
 }

@@ -4,23 +4,28 @@
 
 	<select id="commuinityList"
 		resultType="com.smhrd.shake.entity.CommunityInfo">
-		select * from community_info
+		select * from community_info 
 	</select>
 
 	<insert id="communityWrite"
 		parameterType="com.smhrd.shake.entity.CommunityInfo">
-		insert into community_info (user_id, comm_title, comm_content, comm_image,
-		created_at, comm_views, comm_likes)
-		values (#{user_id}, #{comm_title}, #{comm_content}, #{comm_image}, now(), 1,
-		2)
+		insert into community_info (user_id, comm_title,
+		comm_content, comm_image,
+		created_at, comm_views)
+		values
+		(#{user_id}, #{comm_title}, #{comm_content}, #{comm_image}, now(), 0)
 	</insert>
 
 	<select id="communityContent"
 		parameterType="com.smhrd.shake.entity.CommunityInfo">
 		select * from community_info where comm_idx = #{comm_idx}
 	</select>
+	
+	<delete id="communityDelete">
+		delete from community_info where comm_idx = #{comm_idx}
+	</delete>
 
 	<update id="count">
-		UPDATE community_info SET comm_views = comm_views+1 WHERE comm_idx = #{comm_idx}
+		update community_info set comm_views = comm_views+1 WHERE comm_idx = #{comm_idx}
 	</update>
 </mapper>

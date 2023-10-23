@@ -28,7 +28,7 @@
 					<hr class="first" />
 					<section>
 						<header>
-							<h1 class="text-center">위스키 게시판</h1>
+							<h1 class="text-center">자유게시판</h1>
 							<br>
 						</header>
 						<!--게시판기본틀임시-->
@@ -50,17 +50,12 @@
 										th:href="@{community/{comm_idx}(comm_idx=${b.comm_idx})}"
 										th:text="${b.comm_title}"></a></td>
 									<td th:text="${b.user_id}"></td>
-									<td th:text="${b.create_at}"></td>
+									<td th:text="${b.created_at}"></td>
 									<td th:text="${b.comm_views}"></td>
 								</tr>
 							</tbody>
 						</table>
 					</section>
-					<header>
-						<h3>
-							<a href="#">마이 레시피로 이동하기</a>
-						</h3>
-					</header>
 				</div>
 				<footer>
 					<a href="community/write"

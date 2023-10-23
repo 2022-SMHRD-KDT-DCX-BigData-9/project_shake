@@ -14,5 +14,5 @@ public class RecipeInfo {
 	private String rcp_desc;
 	private Date created_at;
 	private int rcp_views;
-	private int rcp_likes;	
+	private int likes_count;	
 }

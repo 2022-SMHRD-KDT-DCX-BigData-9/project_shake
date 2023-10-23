@@ -5,11 +5,17 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.smhrd.shake.entity.RecipeInfo;
+import com.smhrd.shake.entity.RecipeLikes;
 
 @Mapper
 public interface MyRecipeMapper {
 	public List<RecipeInfo> recipeList();
 	public void recipeWrite(RecipeInfo rcp);
 	public RecipeInfo recipeContent(int rcp_idx);
+	public Integer checkLike(RecipeLikes like);
+	public int recipeLike(RecipeLikes like);
+	public int recipeDislike(RecipeLikes like);
 	public int recipeDelete(int rcp_idx);
+	public int count(int rcp_idx);
+
 }

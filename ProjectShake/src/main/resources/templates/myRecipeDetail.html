@@ -18,20 +18,43 @@
 </head>
 <body>
 	<div id="page-wrapper">
-		<!-- header -->
-		<div th:replace="/header :: header"></div>
-
+		<div id="header">
+			<!-- Inner -->
+			<div class="inner">
+				<h1>
+					<a href="../main" id="logo">SHAKE</a>
+				</h1>
+			</div>
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="../main">Home</a></li>
+					<li><a href="../cocktailInfo">Cocktail</a></li>
+					<li><a href="../myRecipe">My recipe</a></li>
+					<li><a href="../community">Community</a>
+					<li>
+					<li><a href="myPage">mypage</a>
+						<ul>
+							<li><a href="#">내 정보</a></li>
+							<li><a href="#">좋아요</a></li>
+						</ul></li>
+				</ul>
+			</nav>
+		</div>
 		<!--게시글 기본 틀-->
 		<!--짧은 css 태그안에 넣었습니다-->
 		<div class="container">
 			<div class="row">
-				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
+				<table class="table table-striped"
+					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
-						<th colspan="2" style="background-color: #eeeeee; text-align: center;">게시판 글보기</th>
+						<th colspan="2"
+							style="background-color: #eeeeee; text-align: center;">게시판
+							글보기</th>
 					</thead>
 					<tbody>
 						<tr>
-							<td style="width : 20%;">칵테일 명</td>
+							<td style="width: 20%;">칵테일 명</td>
 							<td colspan="2" th:text="${myRecipe.rcp_name}"></td>
 						</tr>
 						<tr>
@@ -48,12 +71,13 @@
 						</tr>
 						<tr>
 							<td>작성내용</td>
-							<td style = "height : 400px;" colspan="2" th:text="${myRecipe.rcp_desc}">임시데이터</td>
+							<td style="height: 400px;" colspan="2"
+								th:text="${myRecipe.rcp_desc}">임시데이터</td>
 						</tr>
 						<tr>
 							<!--첫번째 td에 사용자가 넣는 사진-->
 							<td>사진</td>
-							<td colspan="2" style="height: 200px; text-align: left;" ></td>
+							<td colspan="2" style="height: 200px; text-align: left;"></td>
 						</tr>
 						<tr>
 							<td>조회수</td>
@@ -64,33 +88,54 @@
 							<td colspan="2" text-align: left; th:text="${myRecipe.rcp_likes}"></td>
 						</tr>
 					</tbody>
-
 				</table>
 
 			</div>
 			<!--button type 확인-->
 			<div th:if="${session.loginMember.user_id == myRecipe.user_id}">
-				<a href ="myRecipe"><button class="btn btn-info">목록으로</button></a>
-				<a th:href ="@{delete/{rcp_idx}(rcp_idx=${myRecipe.rcp_idx})}"><button class="btn btn-info">게시글 삭제</button></a>
+				<a href="myRecipe"><button class="btn btn-info">목록으로</button></a> <a
+					th:href="@{delete/{rcp_idx}(rcp_idx=${myRecipe.rcp_idx})}"><button
+						class="btn btn-info">게시글 삭제</button></a>
 			</div>
+			<br>
+			<form id="likeBtnForm" action="like" method="get">
+				<input id="rcp_idx" type="hidden" th:value="${myRecipe.rcp_idx}" name="rcp_idx"> 
+				<input id="rcp_user_id" type="hidden" th:value="${session.loginMember.user_id}" name="user_id">
+				<div id = "likeBtn">
+					<button type ="submit" class="btn btn-info">좋아요 취소</button>
+				</div>
+			</form>
 		</div>
+
 	</div>
 	<br>
 	<br>
 	<div th:replace="/footer :: footer"></div>
-    
-    <!-- Scripts -->
-         <script src="assets/js/jquery.min.js"></script>
-         <script src="assets/js/jquery.dropotron.min.js"></script>
-         <script src="assets/js/jquery.scrolly.min.js"></script>
-         <script src="assets/js/jquery.scrollex.min.js"></script>
-         <script src="assets/js/browser.min.js"></script>
-         <script src="assets/js/breakpoints.min.js"></script>
-         <script src="assets/js/util.js"></script>
-         <script src="assets/js/main.js"></script>
-         <!--bootscripts-->
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
+	<!-- Scripts -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/recipeCount.js"></script>
+	<script src="../assets/js/likes.js"></script>
+	<!--bootscripts-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+		crossorigin="anonymous"></script>
 </body>
 </html>

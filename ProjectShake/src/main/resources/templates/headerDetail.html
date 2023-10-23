@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headFragment">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div id="header">
+		<!-- Inner -->
+		<div class="inner">
+			<h1>
+				<a href="../main" id="logo">SHAKE</a>
+			</h1>
+		</div>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="../main">Home</a></li>
+				<li><a href="../cocktailInfo">Cocktail</a></li>
+				<li><a href="../myRecipe">My recipe</a></li>
+				<li><a href="../community">Community</a>
+				<li><a href="myPage">mypage</a>
+					<ul>
+						<li><a href="#">내 정보</a></li>
+						<li><a href="#">좋아요</a></li>
+					</ul></li>
+			</ul>
+		</nav>
+	</div>
+</body>
+</html>

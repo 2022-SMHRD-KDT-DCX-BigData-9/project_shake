@@ -2,21 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smhrd.shake.mapper.MyRecipeMapper">
 
-<select id="recipeList" resultType="com.smhrd.shake.entity.RecipeInfo">
-	select * from recipe_info
-</select>
+	<select id="recipeList"
+		resultType="com.smhrd.shake.entity.RecipeInfo">
+		SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS likes_count
+		FROM recipe_info
+		LEFT JOIN recipe_likes ON recipe_info.rcp_idx = recipe_likes.rcp_idx
+		WHERE recipe_likes.rcp_likes = 1
+		GROUP BY recipe_info.rcp_idx;
+	</select>
 
-<insert id="recipeWrite" parameterType="com.smhrd.shake.entity.RecipeInfo">
-	insert into recipe_info (user_id, rcp_name, rcp_ingredient, rcp_image, rcp_desc, created_at, rcp_views, rcp_likes) 
-	values (#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image}, #{rcp_desc}, now(), 1, 2)
-</insert>
+	<insert id="recipeWrite"
+		parameterType="com.smhrd.shake.entity.RecipeInfo">
+		insert into recipe_info (user_id, rcp_name,
+		rcp_ingredient, rcp_image,
+		rcp_desc, created_at, rcp_views, rcp_likes)
+		values (#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image},
+		#{rcp_desc}, now(), 0, 0)
+	</insert>
 
-<select id="recipeContent" parameterType="com.smhrd.shake.entity.RecipeInfo">
-	select * from recipe_info where rcp_idx = #{rcp_idx}
-</select>
+	<select id="recipeContent"
+		parameterType="com.smhrd.shake.entity.RecipeInfo">
+		select * from recipe_info where rcp_idx = #{rcp_idx}
+	</select>
 
-<delete id="recipeDelete">
-	delete from recipe_info where rcp_idx = #{rcp_idx}
-</delete>
+	<delete id="recipeDelete">
+		delete from recipe_info where rcp_idx = #{rcp_idx}
+	</delete>
+
+	<update id="count">
+		update recipe_info set rcp_views = rcp_views+1
+		WHERE
+		rcp_idx = #{rcp_idx}
+	</update>
+
+	<select id="checkLike"
+		parameterType="com.smhrd.shake.entity.RecipeLikes"
+		resultType="Integer">
+		select rcp_likes from recipe_likes where user_id =
+		#{user_id} and rcp_idx = #{rcp_idx}
+	</select>
+
+	<insert id="recipeLike"
+		parameterType="com.smhrd.shake.entity.RecipeLikes">
+		insert into recipe_likes (user_id, rcp_idx, rcp_likes)
+		values (#{user_id}, #{rcp_idx}, 1)
+	</insert>
+
+	<delete id="recipeDislike"
+		parameterType="com.smhrd.shake.entity.RecipeLikes">
+		delete from recipe_likes where user_id = #{user_id} and
+		rcp_idx = #{rcp_idx}
+	</delete>
 
 </mapper>

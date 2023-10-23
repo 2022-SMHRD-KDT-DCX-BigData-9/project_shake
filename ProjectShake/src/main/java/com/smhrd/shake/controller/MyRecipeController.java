@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.smhrd.shake.entity.RecipeInfo;
+import com.smhrd.shake.entity.RecipeLikes;
 import com.smhrd.shake.entity.UserInfo;
 import com.smhrd.shake.service.MyRecipeService;
 
@@ -29,7 +30,6 @@ public class MyRecipeController {
 	@GetMapping("/myRecipe")
 	public String myRecipe(HttpSession session, Model model) {
 		UserInfo member = (UserInfo) session.getAttribute("loginMember");
-		System.out.println("member");
 		if (member != null) {
 			List<RecipeInfo> list = service.recipeList();
 			model.addAttribute("list", list);
@@ -60,7 +60,6 @@ public class MyRecipeController {
 	public String recipeContent(@PathVariable("rcp_idx") int rcp_idx, Model model) throws IOException {
 		RecipeInfo contents = service.recipeContent(rcp_idx);
 		model.addAttribute("myRecipe", contents);
-		System.out.println(contents.getRcp_desc());
 		return "myRecipeDetail";
 	}
 	
@@ -73,5 +72,14 @@ public class MyRecipeController {
 			return "redirect:/myRecipe"; // 삭제되지 않았습니다. 출력
 		}
 	}
-
+	
+	@GetMapping("myRecipe/like")
+	public String recipeLike(RecipeLikes like) {
+		if (like.getRcp_likes().equals("0")) {
+			service.recipeLike(like);
+		} else {
+			service.recipeDislike(like);
+		}
+		return "redirect:/myRecipe";
+	}
 }
