@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.smhrd.shake.converter.ImageConverter;
 import com.smhrd.shake.converter.ImageToBase64;
 import com.smhrd.shake.entity.CommunityInfo;
+import com.smhrd.shake.entity.RecipeComment;
 import com.smhrd.shake.entity.RecipeInfo;
 import com.smhrd.shake.entity.RecipeLikes;
 import com.smhrd.shake.entity.RecipeTasteInfo;
@@ -33,7 +34,7 @@ public class MyRecipeController {
 	MyRecipeService service;
 	
 	@GetMapping("/myRecipe")
-	public String myRecipe(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) {
+	public String myRecipe(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) throws IOException {
 		UserInfo member = (UserInfo) session.getAttribute("loginMember");
 		if (member != null) {
 			int pageSize = 6; // 한 페이지에 표시할 항목 수
@@ -55,7 +56,6 @@ public class MyRecipeController {
 	
 	@PostMapping("/myRecipe/write/save")
 	public String recipeWrite(RecipeInfo rcp, @RequestPart("image") MultipartFile image) {
-		System.out.println(image.getOriginalFilename());
 		String newFileName = UUID.randomUUID().toString() + image.getOriginalFilename();
 		try {
 			image.transferTo(new File(newFileName));
@@ -106,4 +106,15 @@ public class MyRecipeController {
 		service.recipeAssess(rcp);
 		return "redirect:/myRecipe/"+ rcp_idx;
 	}
+	
+	@GetMapping("myRecipe/recipeCmt")
+	public String recipeCmt(RecipeComment cmt) {
+		int rcp = service.recipeCmt(cmt);
+		int rcp_idx= cmt.getRcp_idx();
+		return "redirect:/myRecipe/"+rcp_idx;
+	}
+	
+	
+	
+	
 }

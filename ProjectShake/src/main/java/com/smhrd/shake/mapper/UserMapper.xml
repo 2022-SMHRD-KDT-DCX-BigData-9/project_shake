@@ -9,4 +9,19 @@
 	insert into user_info (user_id, user_pw, user_name, user_nick, user_birthdate, user_joindate)
 	values (#{user_id}, #{user_pw}, #{user_name}, #{user_nick}, #{user_birthdate}, now());
 </insert>
+
+<update id = "update" parameterType="com.smhrd.shake.entity.UserInfo">
+	update user_info set user_pw = #{user_pw}, user_name = #{user_name}, user_nick = #{user_nick} where user_id = #{user_id}
+</update>
+
+<select id="userLike"
+	resultType="com.smhrd.shake.entity.RecipeInfo">
+	SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS
+	likes_count
+	FROM recipe_info
+	LEFT JOIN recipe_likes ON
+	recipe_info.rcp_idx = recipe_likes.rcp_idx
+	WHERE recipe_likes.user_id = #{user_id}
+	GROUP BY recipe_info.rcp_idx;
+</select>
 </mapper>

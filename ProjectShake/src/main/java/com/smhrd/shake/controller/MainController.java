@@ -29,4 +29,10 @@ public class MainController {
 	public String myRecipeWrite() {
 		return "myRecipeWrite";
 	}
+	
+	@GetMapping("/userUpdate")
+	public String userUpdate() {
+		return "userUpdate";
+	}
+	
 }

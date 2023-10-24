@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smhrd.shake.entity.RecipeComment;
 import com.smhrd.shake.entity.RecipeLikes;
 import com.smhrd.shake.entity.RecipeTasteInfo;
 import com.smhrd.shake.entity.RecipeTasteInfoAVG;
@@ -47,6 +48,12 @@ public class MyRecipeRestController {
 	public List<RecipeTasteInfoAVG> recipeChart(@RequestParam("rcp_idx") int rcp_idx){
 		List<RecipeTasteInfoAVG> list = service.recipeChart(rcp_idx);
 		System.out.println(list);
+		return list;
+	}
+	
+	@GetMapping("/recipeCmtList")
+	public List<RecipeComment> recipeCmtList(@RequestParam("rcp_idx") int rcp_idx){
+		List<RecipeComment> list = service.recipeCmtList(rcp_idx);
 		return list;
 	}
 	

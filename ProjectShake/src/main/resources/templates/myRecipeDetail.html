@@ -39,6 +39,29 @@
 							<li><a href="#">좋아요</a></li>
 						</ul></li>
 				</ul>
+				<li><a id="logout">Logout</a></li>
+				</ul>
+				<!-- 모달 -->
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<!-- 모달 내용 -->
+						<span class="close">&times;</span> <br>
+						<div class="logoutmodal">로그아웃 하시겠습니까</div>
+						<br>
+						<!--img gif 추가-->
+						<img src="https://media.tenor.com/Za9VC5yMtlsAAAAC/bye.gif">
+						<br>
+						<button type="button" id="shakeOut" class="btn btn-primary">
+							<a href="logout">SHAKE</a>
+						</button>
+						<br>
+						<button type="button" id="kakaoOut" class="btn btn-warning">KAKAO</button>
+						<br>
+						<button type="button" id="gogleOut" class="btn btn-light">GOGLE</button>
+						<br>
+						<button type="button" id="naverOut" class="btn btn-success">NAVER</button>
+					</div>
+				</div>
 			</nav>
 		</div>
 		<!--게시글 기본 틀-->
@@ -94,20 +117,19 @@
 				</table>
 				<div>
 					<canvas id="recipeChart"></canvas>
-					<form action="recipeAssess" method = "get">
-						<input type = "hidden" th:value = "${myRecipe.rcp_idx}" name = "rcp_idx">
-						<input type = "hidden" th:value = "${session.loginMember.user_id}" name = "user_id">
-						단맛  <input type = "number" min = "1" max = "10" name ="sweet">
-						신맛  <input type = "number" min = "1" max = "10" name ="sour">
-						쓴맛  <input type = "number" min = "1" max = "10" name ="bitter">
-						짠맛  <input type = "number" min = "1" max = "10" name ="salty">
-						매운맛  <input type = "number" min = "1" max = "10" name ="spicy">
-						떫은맛  <input type = "number" min = "1" max = "10" name ="puckery">
-						<input type = "submit" value = "맛평가 제출">
+					<form action="recipeAssess" method="get">
+						<input type="hidden" th:value="${myRecipe.rcp_idx}" name="rcp_idx">
+						<input type="hidden" th:value="${session.loginMember.user_id}"
+							name="user_id"> 단맛 <input type="number" min="1" max="10"
+							name="sweet"> 신맛 <input type="number" min="1" max="10"
+							name="sour"> 쓴맛 <input type="number" min="1" max="10"
+							name="bitter"> 짠맛 <input type="number" min="1" max="10"
+							name="salty"> 매운맛 <input type="number" min="1" max="10"
+							name="spicy"> 떫은맛 <input type="number" min="1" max="10"
+							name="puckery"> <input type="submit" value="맛평가 제출">
 					</form>
 				</div>
-				<br>
-				<br>
+				<br> <br>
 			</div>
 			<!--button type 확인-->
 			<div th:if="${session.loginMember.user_id == myRecipe.user_id}">
@@ -124,6 +146,42 @@
 					<button type="submit" class="btn btn-info">좋아요 취소</button>
 				</div>
 			</form>
+			<!-- 댓글 작성창 -->
+			<div class=content>
+				<div class="card-header bg-light">
+					<i class="fa fa-comment fa"></i> REPLY
+				</div>
+				<div class="card-body">
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">
+							<form action="recipeCmt" method = "get">
+								<input type = "hidden" th:value = "${session.loginMember.user_nick}" name = "user_nick">
+								<input type = "hidden" th:value = "${myRecipe.rcp_idx}" name = "rcp_idx">
+								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name ="cmt_content"></textarea>
+								<button type="sumbit" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- 댓글 토글 -->
+			<span id="comment"> 
+				<a id = "commentDetail"><details>
+					<summary id="commentSummary"> COMMENT(2) </summary>
+					<br>
+					<div class="media mb-4" id="commentDiv">
+						<img class="d-flex mr-3 rounded-circle"
+							src="http://placehold.it/50x50" alt="">
+						<div class="media-body">
+							<!--"작성자 이름  날짜" 및 내용 출력-->
+							<h5 class="mt-0"> 유저 닉네임<small class="text-muted"> 2023-10-24(화) 오전11:29</small>
+							</h5>
+							<p>레시피 멋지네요! 👍</p>
+						</div>
+					</div>
+				</details></a>
+			</span>
 		</div>
 
 	</div>

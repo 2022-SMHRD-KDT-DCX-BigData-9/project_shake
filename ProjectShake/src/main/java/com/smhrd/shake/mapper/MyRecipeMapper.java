@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.smhrd.shake.entity.RecipeComment;
 import com.smhrd.shake.entity.RecipeInfo;
 import com.smhrd.shake.entity.RecipeLikes;
 import com.smhrd.shake.entity.RecipeTasteInfo;
@@ -21,4 +22,6 @@ public interface MyRecipeMapper {
 	public int count(int rcp_idx);
 	public List<RecipeTasteInfoAVG> recipeChart(int rcp_idx);
 	public int recipeAssess(RecipeTasteInfo rcp);
+	public int recipeCmt(RecipeComment cmt);
+	public List<RecipeComment> recipeCmtList(int rcp_idx);
 }

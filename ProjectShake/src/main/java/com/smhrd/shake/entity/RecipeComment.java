@@ -10,5 +10,5 @@ public class RecipeComment {
 	private int rcp_idx;
 	private String cmt_content;
 	private Date create_at;
-	private String user_id;
+	private String user_nick;
 }
