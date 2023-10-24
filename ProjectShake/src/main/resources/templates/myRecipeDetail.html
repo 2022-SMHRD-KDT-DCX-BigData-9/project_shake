@@ -77,7 +77,9 @@
 						<tr>
 							<!--첫번째 td에 사용자가 넣는 사진-->
 							<td>사진</td>
-							<td colspan="2" style="height: 200px; text-align: left;"></td>
+							<td colspan="2" style="height: 200px; text-align: left;"><img
+								th:src="@{'data:image/png;base64,' + ${myRecipe.rcp_image}}"
+								class="card-img-top" alt="..."></td>
 						</tr>
 						<tr>
 							<td>조회수</td>
@@ -85,11 +87,27 @@
 						</tr>
 						<tr>
 							<td>추천수</td>
-							<td colspan="2" text-align: left; th:text="${myRecipe.rcp_likes}"></td>
+							<td colspan="2" text-align:
+								left; th:text="${myRecipe.likes_count}"></td>
 						</tr>
 					</tbody>
 				</table>
-
+				<div>
+					<canvas id="recipeChart"></canvas>
+					<form action="recipeAssess" method = "get">
+						<input type = "hidden" th:value = "${myRecipe.rcp_idx}" name = "rcp_idx">
+						<input type = "hidden" th:value = "${session.loginMember.user_id}" name = "user_id">
+						단맛  <input type = "number" min = "1" max = "10" name ="sweet">
+						신맛  <input type = "number" min = "1" max = "10" name ="sour">
+						쓴맛  <input type = "number" min = "1" max = "10" name ="bitter">
+						짠맛  <input type = "number" min = "1" max = "10" name ="salty">
+						매운맛  <input type = "number" min = "1" max = "10" name ="spicy">
+						떫은맛  <input type = "number" min = "1" max = "10" name ="puckery">
+						<input type = "submit" value = "맛평가 제출">
+					</form>
+				</div>
+				<br>
+				<br>
 			</div>
 			<!--button type 확인-->
 			<div th:if="${session.loginMember.user_id == myRecipe.user_id}">
@@ -99,10 +117,11 @@
 			</div>
 			<br>
 			<form id="likeBtnForm" action="like" method="get">
-				<input id="rcp_idx" type="hidden" th:value="${myRecipe.rcp_idx}" name="rcp_idx"> 
-				<input id="rcp_user_id" type="hidden" th:value="${session.loginMember.user_id}" name="user_id">
-				<div id = "likeBtn">
-					<button type ="submit" class="btn btn-info">좋아요 취소</button>
+				<input id="rcp_idx" type="hidden" th:value="${myRecipe.rcp_idx}"
+					name="rcp_idx"> <input id="rcp_user_id" type="hidden"
+					th:value="${session.loginMember.user_id}" name="user_id">
+				<div id="likeBtn">
+					<button type="submit" class="btn btn-info">좋아요 취소</button>
 				</div>
 			</form>
 		</div>
@@ -124,6 +143,8 @@
 	<script src="assets/js/main.js"></script>
 	<script src="../assets/js/recipeCount.js"></script>
 	<script src="../assets/js/likes.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="../assets/js/recipeChart.js"></script>
 	<!--bootscripts-->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

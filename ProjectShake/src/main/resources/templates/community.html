@@ -25,16 +25,39 @@
 		<div class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200" th:if="${session.loginMember!=null}">
-					<hr class="first" />
 					<section>
 						<header>
 							<h1 class="text-center">자유게시판</h1>
 							<br>
+							<div class="row">
+								<div class="col-sm-5 col-md-6">
+									<img src="assets/images/cock_icon.png"
+										style="width: 140px; height: 140px; float: right;" alt="image">
+								</div>
+								<div class="col-sm-5 col-md-6">
+									<strong>나만의 시크릿 칵테일 레시피를 공유하세요!</strong> <br>
+									<p>
+										좋아요를 많이 받은 레시피는<br>인기순위에 등록됩니다<br>당신의 센스를 보여주세요!
+									</p>
+								</div>
+							</div>
+							<br>
+							<div class="input-group">
+								<input type="text" class="form-control rounded" id="search"
+									placeholder="Search" aria-label="Search"
+									aria-describedby="search-addon" style="margin-right: 10px;" />
+								<button id="searchBtn" class="btn btn-outline-primary">search</button>
+							</div>
+
+
+
+
+							<br> <a href="community/write"
+								class="btn btn-outline-secondary float-right">글쓰기</a> <br>
 						</header>
 						<!--게시판기본틀임시-->
-						<table class="table table-hover table-striped text-center"
-							style="border: 1px solid">
-							<thead>
+						<table class="table table-hover text-center">
+							<thead class="table-dark">
 								<tr>
 									<th>번호</th>
 									<th>제목</th>
@@ -57,10 +80,14 @@
 						</table>
 					</section>
 				</div>
+				<div class="pagination">
+					<span th:if="${page > 1}"><a th:href="@{/community(page=${page - 1})}">Previous</a>
+					</span> <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+						<a th:href="@{/community(page=${pageNumber})}" th:text="${pageNumber}"></a>
+					</span> <span th:if="${page < totalPages}"> <a th:href="@{/community(page=${page + 1})}">Next</a>
+					</span>
+				</div>
 				<footer>
-					<a href="community/write"
-						class="btn btn-outline-secondary float-right">글쓰기</a>
-				</footer>
 			</div>
 
 		</div>

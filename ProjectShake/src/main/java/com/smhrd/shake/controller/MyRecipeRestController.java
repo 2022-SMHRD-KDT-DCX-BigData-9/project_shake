@@ -1,6 +1,8 @@
 package com.smhrd.shake.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.shake.entity.RecipeLikes;
+import com.smhrd.shake.entity.RecipeTasteInfo;
+import com.smhrd.shake.entity.RecipeTasteInfoAVG;
 import com.smhrd.shake.service.MyRecipeService;
 
 @RestController
@@ -39,5 +43,11 @@ public class MyRecipeRestController {
 		return cnt;
 	}
 	
-
+	@GetMapping("/recipeChart")
+	public List<RecipeTasteInfoAVG> recipeChart(@RequestParam("rcp_idx") int rcp_idx){
+		List<RecipeTasteInfoAVG> list = service.recipeChart(rcp_idx);
+		System.out.println(list);
+		return list;
+	}
+	
 }

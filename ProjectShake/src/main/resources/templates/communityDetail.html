@@ -72,16 +72,14 @@
 						<tr>
 							<!--첫번째 td에 사용자가 넣는 사진-->
 							<td>사진</td>
-							<td colspan="2" style="height: 200px; text-align: left;"></td>
+							<td><img style = "width : 500px; height : 400px;"
+										     th:src = "'data:image/png;base64,' + ${board.comm_image}"></td>
 						</tr>
 						<tr>
 							<td>조회수</td>
 							<td colspan="2" text-align: left; th:text="${board.comm_views}"></td>
 						</tr>
-						<tr>
-							<td>추천수</td>
-							<td colspan="2" text-align: left; th:text="${board.comm_likes}"></td>
-						</tr>
+
 					</tbody>
 				</table>
 

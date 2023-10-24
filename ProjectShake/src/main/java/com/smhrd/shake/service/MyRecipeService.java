@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.smhrd.shake.entity.RecipeInfo;
 import com.smhrd.shake.entity.RecipeLikes;
+import com.smhrd.shake.entity.RecipeTasteInfo;
+import com.smhrd.shake.entity.RecipeTasteInfoAVG;
 import com.smhrd.shake.mapper.MyRecipeMapper;
 
 @Service
@@ -45,5 +47,13 @@ public class MyRecipeService {
 	
 	public int recipeDislike(RecipeLikes like) {
 		return mapper.recipeDislike(like);
+	}
+	
+	public List<RecipeTasteInfoAVG> recipeChart(int rcp_idx) {
+		return mapper.recipeChart(rcp_idx);
+	}
+	
+	public int recipeAssess(RecipeTasteInfo rcp) {
+		return mapper.recipeAssess(rcp);
 	}
 }

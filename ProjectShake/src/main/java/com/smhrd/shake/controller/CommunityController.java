@@ -13,10 +13,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.smhrd.shake.converter.ImageConverter;
+import com.smhrd.shake.converter.ImageToBase64;
 import com.smhrd.shake.entity.CommunityInfo;
+import com.smhrd.shake.entity.RecipeInfo;
 import com.smhrd.shake.entity.UserInfo;
 import com.smhrd.shake.service.CommunityService;
 
@@ -27,15 +31,26 @@ public class CommunityController {
 	CommunityService service;
 
 	@GetMapping("/community")
-	public String community(HttpSession session, Model model) {
+	public String community(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) {
 		UserInfo member = (UserInfo) session.getAttribute("loginMember");
 		if (member != null) {
+			int pageSize = 10;
 			List<CommunityInfo> list = service.commuinityList();
-
-			model.addAttribute("list", list);
+			int totalLists = list.size();
+			int totalPages = (int) Math.ceil((double) totalLists / pageSize);
+			
+			int startIndex = (page - 1) * pageSize;
+	        int endIndex = Math.min(startIndex + pageSize, totalLists);
+	        
+	        List<CommunityInfo> listToDisplay = list.subList(startIndex, endIndex);
+			
+	        model.addAttribute("list", listToDisplay);
+	        model.addAttribute("page", page);
+	        model.addAttribute("totalPages", totalPages);
 		}
 		return "community";
 	}
+	
 
 	@PostMapping("/community/write/save")
 	public String communityWrite(CommunityInfo comm, @RequestPart("image") MultipartFile image) {
@@ -59,6 +74,10 @@ public class CommunityController {
 	@GetMapping("community/{comm_idx}")
 	public String communityContent(@PathVariable("comm_idx") int comm_idx, Model model) throws IOException {
 		CommunityInfo contents = service.communityContent(comm_idx);
+		File file = new File("c:\\uploadImage\\" + contents.getComm_image());
+		ImageConverter<File, String> converter= new ImageToBase64();
+		String fileStringValue = converter.convert(file);
+		contents.setComm_image(fileStringValue);
 		model.addAttribute("board", contents);
 		return "communityDetail";
 	}

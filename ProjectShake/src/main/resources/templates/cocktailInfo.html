@@ -7,10 +7,10 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
-<noscript>
-	<link rel="stylesheet" href="assets/css/noscript.css" />
-</noscript>
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
 </head>
 <body class="right-sidebar is-preload">
 	<div id="page-wrapper">
@@ -29,12 +29,16 @@
 			<!--칵테일 정보 토글 임시데이터-->
 
 			<div id="cocktailPrv">
-				<details id = "cockDetail" th:each="b:${list}">
+				<details id="cockDetail" th:each="b:${list}">
 					<!--summary에 칵테일 이름-->
 					<summary th:text="${b.cock_name}">임시데이터1</summary>
 					<!--각 p태그에 칵테일정보-->
 					<P th:text="${b.cock_desc}"></P>
-					<img th:src="${b.cock_image}" style = "height : 200px; width : 200px">
+					<img th:src="${b.cock_image}" style="height: 200px; width: 200px">
+					<!-- 칵테일 차트 보여주기 -->
+					<div>
+						<canvas id="cockInfoChart"></canvas>
+					</div>
 				</details>
 			</div>
 			<hr />
@@ -42,7 +46,7 @@
 		</div>
 	</div>
 	<div th:replace="/footer :: footer"></div>
-	
+
 	<!-- Scripts -->
 	<script src="assets/js/jquery.min.js"></script>
 	<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -53,6 +57,7 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/search.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script src="assets/js/cockInfoChart.js"></script>
 </body>
 </html>

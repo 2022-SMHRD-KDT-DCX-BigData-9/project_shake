@@ -4,20 +4,23 @@
 
 	<select id="recipeList"
 		resultType="com.smhrd.shake.entity.RecipeInfo">
-		SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS likes_count
+		SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS
+		likes_count
 		FROM recipe_info
-		LEFT JOIN recipe_likes ON recipe_info.rcp_idx = recipe_likes.rcp_idx
-		WHERE recipe_likes.rcp_likes = 1
-		GROUP BY recipe_info.rcp_idx;
+		LEFT JOIN recipe_likes ON
+		recipe_info.rcp_idx = recipe_likes.rcp_idx
+		GROUP BY
+		recipe_info.rcp_idx;
 	</select>
 
 	<insert id="recipeWrite"
 		parameterType="com.smhrd.shake.entity.RecipeInfo">
 		insert into recipe_info (user_id, rcp_name,
 		rcp_ingredient, rcp_image,
-		rcp_desc, created_at, rcp_views, rcp_likes)
-		values (#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image},
-		#{rcp_desc}, now(), 0, 0)
+		rcp_desc, created_at, rcp_views)
+		values
+		(#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image},
+		#{rcp_desc}, now(), 0)
 	</insert>
 
 	<select id="recipeContent"
@@ -54,4 +57,21 @@
 		rcp_idx = #{rcp_idx}
 	</delete>
 
+	<select id="recipeChart"
+		resultType="com.smhrd.shake.entity.RecipeTasteInfoAVG">
+		SELECT rcp_idx,
+			AVG(sweet) AS sweet,
+			AVG(bitter) AS bitter,
+			AVG(salty) AS salty,
+			AVG(sour) AS sour,
+			AVG(spicy) AS spicy,
+			AVG(puckery) AS puckery
+		FROM recipe_taste_info
+		GROUP BY rcp_idx;
+	</select>
+	<insert id="recipeAssess" parameterType="com.smhrd.shake.entity.RecipeTasteInfo">
+		INSERT INTO recipe_taste_info (rcp_idx, sweet, bitter, salty, sour, spicy, puckery, user_id)
+		VALUES (#{rcp_idx}, #{sweet}, #{bitter}, #{salty}, #{sour}, #{spicy}, #{puckery}, #{user_id})
+	</insert>
+	
 </mapper>
