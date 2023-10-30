@@ -16,4 +16,5 @@ public class UserInfo {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date user_birthdate;
 	private Date user_joindate;	
+	private String social_id;	
 }

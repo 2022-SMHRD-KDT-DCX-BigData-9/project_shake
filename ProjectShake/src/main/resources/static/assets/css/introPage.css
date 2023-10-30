@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700.800,900');
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700.800,900');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,900&display=swap');
 
 *{
     margin: 0;
@@ -93,5 +92,4 @@ body
         clip-path: polygon(0 60%, 18% 65%, 37% 67%, 53% 62%, 66% 54%, 83% 48%, 100% 53%, 100% 100%, 0% 100%);
      }
 }
-
 

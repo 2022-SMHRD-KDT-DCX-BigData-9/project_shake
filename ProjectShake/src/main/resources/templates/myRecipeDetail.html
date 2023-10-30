@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>메인게시글확인</title>
+<title>My Recipe</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="../assets/css/main.css" />
 <!--bootlink-->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
@@ -15,206 +14,159 @@
 <!-- 부트스트랩 CDN 링크 사진 저장-->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" href="../assets/css/font.css" />
 </head>
 <body>
 	<div id="page-wrapper">
-		<div id="header">
-			<!-- Inner -->
-			<div class="inner">
-				<h1>
-					<a href="../main" id="logo">SHAKE</a>
-				</h1>
-			</div>
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li><a href="../main">Home</a></li>
-					<li><a href="../cocktailInfo">Cocktail</a></li>
-					<li><a href="../myRecipe">My recipe</a></li>
-					<li><a href="../community">Community</a>
-					<li>
-					<li><a href="myPage">mypage</a>
-						<ul>
-							<li><a href="#">내 정보</a></li>
-							<li><a href="#">좋아요</a></li>
-						</ul></li>
-				</ul>
-				<li><a id="logout">Logout</a></li>
-				</ul>
-				<!-- 모달 -->
-				<div id="myModal" class="modal">
-					<div class="modal-content">
-						<!-- 모달 내용 -->
-						<span class="close">&times;</span> <br>
-						<div class="logoutmodal">로그아웃 하시겠습니까</div>
-						<br>
-						<!--img gif 추가-->
-						<img src="https://media.tenor.com/Za9VC5yMtlsAAAAC/bye.gif">
-						<br>
-						<button type="button" id="shakeOut" class="btn btn-primary">
-							<a href="logout">SHAKE</a>
-						</button>
-						<br>
-						<button type="button" id="kakaoOut" class="btn btn-warning">KAKAO</button>
-						<br>
-						<button type="button" id="gogleOut" class="btn btn-light">GOGLE</button>
-						<br>
-						<button type="button" id="naverOut" class="btn btn-success">NAVER</button>
-					</div>
-				</div>
-			</nav>
-		</div>
+		<!-- header -->
+		<div th:replace="/headerDetail :: header"></div>
 		<!--게시글 기본 틀-->
-		<!--짧은 css 태그안에 넣었습니다-->
 		<div class="container">
 			<div class="row">
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd">
-					<thead>
-						<th colspan="2"
-							style="background-color: #eeeeee; text-align: center;">게시판
-							글보기</th>
-					</thead>
-					<tbody>
-						<tr>
-							<td style="width: 20%;">칵테일 명</td>
-							<td colspan="2" th:text="${myRecipe.rcp_name}"></td>
-						</tr>
-						<tr>
-							<td>작성자</td>
-							<td colspan="2" th:text="${myRecipe.user_id}">작성자 임시데이터</td>
-						</tr>
-						<tr>
-							<td>작성일자</td>
-							<td colspan="2" th:text="${myRecipe.created_at}">작성일자 임시데이터</td>
-						</tr>
-						<tr>
-							<td>칵테일 재료</td>
-							<td colspan="2" th:text="${myRecipe.rcp_ingredient}">임시데이터</td>
-						</tr>
-						<tr>
-							<td>작성내용</td>
-							<td style="height: 400px;" colspan="2"
-								th:text="${myRecipe.rcp_desc}">임시데이터</td>
-						</tr>
-						<tr>
-							<!--첫번째 td에 사용자가 넣는 사진-->
-							<td>사진</td>
-							<td colspan="2" style="height: 200px; text-align: left;"><img
-								th:src="@{'data:image/png;base64,' + ${myRecipe.rcp_image}}"
-								class="card-img-top" alt="..."></td>
-						</tr>
-						<tr>
-							<td>조회수</td>
-							<td colspan="2" text-align: left; th:text="${myRecipe.rcp_views}"></td>
-						</tr>
-						<tr>
-							<td>추천수</td>
-							<td colspan="2" text-align:
-								left; th:text="${myRecipe.likes_count}"></td>
-						</tr>
-					</tbody>
-				</table>
-				<div>
-					<canvas id="recipeChart"></canvas>
-					<form action="recipeAssess" method="get">
-						<input type="hidden" th:value="${myRecipe.rcp_idx}" name="rcp_idx">
-						<input type="hidden" th:value="${session.loginMember.user_id}"
-							name="user_id"> 단맛 <input type="number" min="1" max="10"
-							name="sweet"> 신맛 <input type="number" min="1" max="10"
-							name="sour"> 쓴맛 <input type="number" min="1" max="10"
-							name="bitter"> 짠맛 <input type="number" min="1" max="10"
-							name="salty"> 매운맛 <input type="number" min="1" max="10"
-							name="spicy"> 떫은맛 <input type="number" min="1" max="10"
-							name="puckery"> <input type="submit" value="맛평가 제출">
-					</form>
-				</div>
-				<br> <br>
-			</div>
-			<!--button type 확인-->
-			<div th:if="${session.loginMember.user_id == myRecipe.user_id}">
-				<a href="myRecipe"><button class="btn btn-info">목록으로</button></a> <a
-					th:href="@{delete/{rcp_idx}(rcp_idx=${myRecipe.rcp_idx})}"><button
-						class="btn btn-info">게시글 삭제</button></a>
-			</div>
-			<br>
-			<form id="likeBtnForm" action="like" method="get">
-				<input id="rcp_idx" type="hidden" th:value="${myRecipe.rcp_idx}"
-					name="rcp_idx"> <input id="rcp_user_id" type="hidden"
-					th:value="${session.loginMember.user_id}" name="user_id">
-				<div id="likeBtn">
-					<button type="submit" class="btn btn-info">좋아요 취소</button>
-				</div>
-			</form>
-			<!-- 댓글 작성창 -->
-			<div class=content>
-				<div class="card-header bg-light">
-					<i class="fa fa-comment fa"></i> REPLY
-				</div>
-				<div class="card-body">
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item">
-							<form action="recipeCmt" method = "get">
-								<input type = "hidden" th:value = "${session.loginMember.user_nick}" name = "user_nick">
-								<input type = "hidden" th:value = "${myRecipe.rcp_idx}" name = "rcp_idx">
-								<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name ="cmt_content"></textarea>
-								<button type="sumbit" class="btn btn-dark mt-3" onClick="javascript:addReply();">post reply</button>
-							</form>
-						</li>
-					</ul>
-				</div>
-			</div>
+				<div class="wrapper style1">
+					<!--게시글 기본 틀-->
+					<div class="container">
+						<div class="row">
+							<div class="wrapper style1">
+								<div class="container">
+									<input type="hidden" th:value="${myRecipe.rcp_name}"
+										id="rcp_name">
+									<form style="text-align: right;" id="likeBtnForm" action="like"
+										method="get">
+										<input id="rcp_idx" type="hidden"
+											th:value="${myRecipe.rcp_idx}" name="rcp_idx"> <input
+											id="rcp_user_id" type="hidden"
+											th:value="${session.loginMember.user_id}" name="user_id">
+										<input id="rcp_user_nick" type="hidden"
+											th:value="${session.loginMember.user_nick}" name="user_nick">
+										<div id="likeBtn">
+											<button type="submit" class="btn btn-info"></button>
+										</div>
+									</form>
+									<div class=content>
+										<h2 th:text="${myRecipe.rcp_name}" style="text-align: center;"></h2>
+										<br>
+										<h5 style="text-align: center;">
+											<i class="fa-solid fa-eye"></i> <span
+												th:text="${myRecipe.rcp_views}"> </span> <i
+												class="fa-solid fa-heart" style="color: #dd2727;"></i> <span
+												th:text="${myRecipe.likes_count}"></span>
+										</h5>
+									</div>
+									<div class=content>
+										<div class="media mb-4">
+											<span>작성자 : </span> <span class="mt-1"
+												th:text=" ${myRecipe.user_nick}"></span><i
+												class="fa-solid fa-martini-glass"></i>
+										</div>
+										<span>작성일자 : </span> <span th:text="${myRecipe.created_at}"></span>
+									</div>
+									<br> <br>
+									<div class=content style="text-align: center;">
+										<div th:text="${myRecipe.rcp_desc}"></div>
+										<br> <br> <img style="width: 400px; height: 400px;"
+											th:src="@{'data:image/png;base64,' + ${myRecipe.rcp_image}}"
+											class="card-img-top">
+									</div>
+									<br>
+									<div class=content style="text-align: center;">
 
-			<!-- 댓글 토글 -->
-			<span id="comment"> 
-				<a id = "commentDetail"><details>
-					<summary id="commentSummary"> COMMENT(2) </summary>
-					<br>
-					<div class="media mb-4" id="commentDiv">
-						<img class="d-flex mr-3 rounded-circle"
-							src="http://placehold.it/50x50" alt="">
-						<div class="media-body">
-							<!--"작성자 이름  날짜" 및 내용 출력-->
-							<h5 class="mt-0"> 유저 닉네임<small class="text-muted"> 2023-10-24(화) 오전11:29</small>
-							</h5>
-							<p>레시피 멋지네요! 👍</p>
+										<div style="max-width: 500px">
+											<h3>SHAKE 맛 평가</h3>
+											<canvas id="recipeChart"></canvas>
+										</div>
+										<br> <br>
+										<form action="recipeAssess" method="get">
+											<input type="hidden" th:value="${myRecipe.rcp_idx}"
+												name="rcp_idx"> <input type="hidden"
+												th:value="${session.loginMember.user_id}" name="user_id">
+											단맛 <input type="number" min="1" max="10" name="sweet">
+											신맛 <input type="number" min="1" max="10" name="sour">
+											쓴맛 <input type="number" min="1" max="10" name="bitter">
+											짠맛 <input type="number" min="1" max="10" name="salty">
+											매운맛 <input type="number" min="1" max="10" name="spicy">
+											떫은맛 <input type="number" min="1" max="10" name="puckery">
+											<br> <br> <input type="submit" value="맛평가 제출">
+										</form>
+									</div>
+									<br> <br>
+								</div>
+								<!-- 댓글 작성창 -->
+								<div class=content>
+									<div class="card-header bg-light">
+										<i class="fa fa-comment fa"></i> REPLY
+									</div>
+									<div class="card-body">
+										<ul class="list-group list-group-flush">
+											<li class="list-group-item">
+												<form action="recipeCmt" method="get">
+													<input type="hidden"
+														th:value="${session.loginMember.user_nick}"
+														name="user_nick"> <input type="hidden"
+														th:value="${myRecipe.rcp_idx}" name="rcp_idx">
+													<textarea class="form-control"
+														id="exampleFormControlTextarea1" rows="3"
+														style="width: 100%;" name="cmt_content"></textarea>
+													<button type="submit" class="btn btn-dark mt-3"
+														onClick="javascript:addReply();">post reply</button>
+												</form>
+											</li>
+										</ul>
+									</div>
+								</div>
+
+								<!-- 댓글 토글 -->
+								<span id="comment"> <details id="commentDiv">
+										<br>
+										<summary id="commentSummary"> COMMENT </summary>
+									</details>
+								</span>
+							</div>
 						</div>
+						<!--button type 확인-->
+						<div></div>
+						<div
+							th:if="${session.loginMember.user_nick == myRecipe.user_nick}">
+							<a th:href="@{delete/{rcp_idx}(rcp_idx=${myRecipe.rcp_idx})}"><button
+									class="btn btn-info">게시글 삭제</button></a>
+						</div>
+						<br> <br>
 					</div>
-				</details></a>
-			</span>
-		</div>
+					<br>
+				</div>
+				<div th:replace="/footer :: footer"></div>
 
-	</div>
-	<br>
-	<br>
-	<div th:replace="/footer :: footer"></div>
+				<!-- Scripts -->
+				<script src="https://kit.fontawesome.com/067c246777.js"
+					crossorigin="anonymous"></script>
+				<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+				<script src="assets/js/jquery.min.js"></script>
+				<script src="assets/js/jquery.dropotron.min.js"></script>
+				<script src="assets/js/jquery.scrolly.min.js"></script>
+				<script src="assets/js/jquery.scrollex.min.js"></script>
+				<script src="assets/js/browser.min.js"></script>
+				<script src="assets/js/breakpoints.min.js"></script>
+				<script src="assets/js/util.js"></script>
+				<script src="assets/js/main.js"></script>
+				<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+				<script src="../assets/js/recipeCount.js"></script>
+				<script src="../assets/js/likes.js"></script>
+				<script src="../assets/js/recipeChart.js"></script>
+				<script src="../assets/js/recipeCmt.js"></script>
 
-	<!-- Scripts -->
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="../assets/js/recipeCount.js"></script>
-	<script src="../assets/js/likes.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="../assets/js/recipeChart.js"></script>
-	<!--bootscripts-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-		crossorigin="anonymous"></script>
+				<!--bootscripts-->
+				<script
+					src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+					integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+					integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+					crossorigin="anonymous"></script>
+				<script
+					src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+					integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+					crossorigin="anonymous"></script>
 </body>
 </html>

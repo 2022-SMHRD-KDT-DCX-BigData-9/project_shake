@@ -1,3 +1,5 @@
+// cockinfo의 검색 기능
+
 $("#searchBtn").on("click", () => {
 	console.log($("#search").val());
 	$.ajax({

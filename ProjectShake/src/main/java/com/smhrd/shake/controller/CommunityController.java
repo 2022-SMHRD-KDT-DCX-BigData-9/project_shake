@@ -19,8 +19,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.smhrd.shake.converter.ImageConverter;
 import com.smhrd.shake.converter.ImageToBase64;
+import com.smhrd.shake.entity.CommunityComment;
 import com.smhrd.shake.entity.CommunityInfo;
-import com.smhrd.shake.entity.RecipeInfo;
+
 import com.smhrd.shake.entity.UserInfo;
 import com.smhrd.shake.service.CommunityService;
 
@@ -36,6 +37,26 @@ public class CommunityController {
 		if (member != null) {
 			int pageSize = 10;
 			List<CommunityInfo> list = service.commuinityList();
+			int totalLists = list.size();
+			int totalPages = (int) Math.ceil((double) totalLists / pageSize);
+			
+			int startIndex = (page - 1) * pageSize;
+	        int endIndex = Math.min(startIndex + pageSize, totalLists);
+	        
+	        List<CommunityInfo> listToDisplay = list.subList(startIndex, endIndex);
+	        model.addAttribute("list", listToDisplay);
+	        model.addAttribute("page", page);
+	        model.addAttribute("totalPages", totalPages);
+		}
+		return "community";
+	}
+	
+	@GetMapping("/communitySearch")
+	public String communitySearch(HttpSession session, Model model, @RequestParam(defaultValue = "1")  int page, String communitySearch) {
+		UserInfo member = (UserInfo) session.getAttribute("loginMember");
+		if (member != null) {
+			int pageSize = 10;
+			List<CommunityInfo> list = service.communitySearch(communitySearch);
 			int totalLists = list.size();
 			int totalPages = (int) Math.ceil((double) totalLists / pageSize);
 			
@@ -78,6 +99,7 @@ public class CommunityController {
 		ImageConverter<File, String> converter= new ImageToBase64();
 		String fileStringValue = converter.convert(file);
 		contents.setComm_image(fileStringValue);
+		System.out.println(contents.getComm_image());
 		model.addAttribute("board", contents);
 		return "communityDetail";
 	}
@@ -90,5 +112,11 @@ public class CommunityController {
 		} else {
 			return "redirect:/myRecipe"; // 삭제되지 않았습니다. 출력
 		}
+	}
+	@GetMapping("community/commCmt")
+	public String commCmt(CommunityComment cmt) {
+		int comm = service.commCmt(cmt);
+		int comm_idx= cmt.getComm_idx();
+		return "redirect:/community/"+comm_idx;
 	}
 }

@@ -42,4 +42,16 @@ public class UserService {
 		}
 		return list;		
 	}	
+	
+	public UserInfo socialLoginCheck(String socialLogin){
+		return mapper.socialLoginCheck(socialLogin);
+	}
+	
+	public int socialJoin(UserInfo user, String social_id) {
+		return mapper.socialJoin(user, social_id);
+	}
+	
+	public int deleteUser(String user_id) {
+		return mapper.deleteUser(user_id);
+	}
 }

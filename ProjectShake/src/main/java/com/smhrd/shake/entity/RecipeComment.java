@@ -9,6 +9,6 @@ public class RecipeComment {
 	private int cmt_idx;
 	private int rcp_idx;
 	private String cmt_content;
-	private Date create_at;
+	private Date created_at;
 	private String user_nick;
 }

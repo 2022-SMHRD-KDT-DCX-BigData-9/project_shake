@@ -223,6 +223,8 @@
          // 로그아웃 버튼을 클릭했을 때 모달 열기 기능 추가
          logoutButton.addEventListener('click', function() {
           modal.style.display = "block";
+        //로그아웃 스크롤 금지
+        document.body.style.overflow = 'hidden';
          
          });
 
@@ -236,5 +238,8 @@
          window.onclick = function(event) {
           if (event.target == modal) {
            modal.style.display = "none";
+         
+         //로그아웃 스크롤 금지
+         document.body.style.overflow = 'auto';
           }
          }

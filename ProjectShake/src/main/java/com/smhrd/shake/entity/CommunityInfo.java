@@ -21,4 +21,5 @@ public class CommunityInfo {
 	private String comm_image;
 	private Date created_at;
 	private int comm_views;
+	private String user_nick;
 }

@@ -12,96 +12,59 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-<!-- 부트스트랩 CDN 링크 사진 저장-->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<noscript>
+	<link rel="stylesheet" href="assets/css/noscript.css" />
+</noscript>
 </head>
 <body>
-	<div id="page-wrapper">
+	<div id="page-wrapper" style="background: #e7e7ec; color: #0E0F37;">
 
-		<!-- Header -->
-		<header>
-			<div id="header">
-				<!-- Inner -->
-				<div class="inner">
-
-					<h1>
-						<a href="../main" id="logo">SHAKE</a>
-					</h1>
-				</div>
-				<!-- Nav -->
-				<nav id="nav">
-					<ul>
-						<li><a href="../main">Home</a></li>
-						<li><a href="../cocktailInfo">Cocktail</a></li>
-						<li><a href="../myRecipe">My recipe</a></li>
-						<li><a href="../community">Community</a></li>
-						<li><a href="myPage">mypage</a>
-							<ul>
-								<li><a href="#">내 정보</a></li>
-								<li><a href="#">좋아요</a></li>
-							</ul></li>
-					</ul>
-					<li><a id="logout" href="logout">Logout</a></li>
-					</ul>
-					<!-- 모달 -->
-					<div id="myModal" class="modal">
-						<div class="modal-content">
-							<!-- 모달 내용 -->
-							<span class="close">&times;</span> <br>
-							<div class="logoutmodal">로그아웃 하시겠습니까</div>
-							<br>
-							<!--img gif 추가-->
-							<img src="https://media.tenor.com/Za9VC5yMtlsAAAAC/bye.gif">
-							<br>
-							<button type="button" id="shakeOut" class="btn btn-primary">SHAKE</button>
-							<br>
-							<button type="button" id="kakaoOut" class="btn btn-warning">KAKAO</button>
-							<br>
-							<button type="button" id="gogleOut" class="btn btn-light">GOGLE</button>
-							<br>
-							<button type="button" id="naverOut" class="btn btn-success">NAVER</button>
-						</div>
-					</div>
-				</nav>
-			</div>
-		</header>
+		<div th:replace="/headerDetail :: header"></div>
 		<!--글쓰기 기본 틀-->
 
 		<div class="container mt-5">
-			<h2>메인게시판 글쓰기</h2>
+			<div class="title" style="background: white;">
+				<h2 align="center">게시판 글쓰기</h2>
+			</div>
+			<br>
 			<!--form 작성되야함-->
-			<form action="write/save" method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<label for="title">제목</label> <br>
-					<br> <input type="text" class="form-control" id="title"
-						placeholder="제목을 입력하세요" name="comm_title"> <label
-						for="writer">작성자</label> <input type="text" class="form-control"
-						id="writer" th:value="${session.loginMember.user_id}"
-						th:placeholder="${session.loginMember.user_id}" name="user_id"
-						readonly>
+			<form action="write/save" method="post" enctype="multipart/form-data"
+				class="write-box fontArea" style="background: white;">
+				<div class="form-group row fontArea"
+					style="margin: 50px 50px 30px 50px">
+					<label for="title" class="col-sm-2 col-form-label fw-bolder">제목</label>
+					<input type="text" class="form-control" id="title"
+						placeholder="제목을 입력하세요" name="comm_title"
+						style="max-width: 800px; float: left; margin-Bottom: 30px">
+					<label for="writer" class="fw-bolder" style="margin-right: 15%">작성자</label>
+					<input id="writer" th:value="${session.loginMember.user_nick}"
+						name="user_nick" readonly> <input type="hidden"
+						th:value="${session.loginMember.user_id}"
+						th:placeholder="${session.loginMember.user_id}" name="user_id">
 				</div>
 				<br>
-				<div class="form-group">
-					<label for="content">내용</label> <br>
-					<br>
+				<div class="form-group" style="margin: 10px 50px 30px 50px">
+					<label for="content" class="col-sm-2 col-form-label fw-bolder">내용</label>
+					<br> <br>
 					<textarea class="form-control" id="content" rows="15"
 						name="comm_content" placeholder="내용을 입력하세요"></textarea>
 				</div>
-				<div class="form-group">
-					<div>이미지 업로드</div>
-					<input type="file" class="form-control-file" id="image"
-						name="image"> <img id="preImage" alt="샘플이미지"
-						style="width: 150px; height: 150px;"
-						src="https://via.placeholder.com/150">
+				<div class="form-group" style="margin: 50px 50px 10px 50px">
+					<label for="image" class="col-sm-2 col-form-label fw-bolder">이미지
+						업로드</label> <input type="file" class="form-control-file" id="image"
+						name="image">
 				</div>
+
 				<br>
-				<button type="submit" class="btn btn-info">글쓰기</button>
+				<div align="center" style="margin: 50px 50px 30px 50px">
+					<button type="submit" class="btn btn-secondary">작성 완료</button>
+					<a href="/shake/community" type="button"
+						class="btn btn-outline-secondary">돌아가기</a>
+				</div>
 			</form>
 		</div>
 
-		<br>
-		<br>
+		<br> <br>
 		<!-- Footer -->
 		<div id="footer">
 			<div class="container">

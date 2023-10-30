@@ -1,11 +1,21 @@
 package com.smhrd.shake.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-// 페이지 이동 컨트롤러
+import com.smhrd.shake.entity.CockMix;
+import com.smhrd.shake.service.MainService;
+
 @Controller
 public class MainController {
+	
+	@Autowired
+	MainService service;
+	
 	@GetMapping("/")
 	public String introPage() { // 인트로 페이지로 이동
 		return "introPage";
@@ -16,7 +26,9 @@ public class MainController {
 	}
 
 	@GetMapping("/main")
-	public String maingPage() { // 메인 페이지로 이동
+	public String mainPage(Model model) { // 메인 페이지로 이동
+		List<CockMix> list = service.mainPage();
+		model.addAttribute("cockMix", list);
 		return "mainPage";
 	}
 	
@@ -33,6 +45,10 @@ public class MainController {
 	@GetMapping("/userUpdate")
 	public String userUpdate() {
 		return "userUpdate";
+	}
+	@GetMapping("/socialJoin")
+	public String socialJoin() {
+		return "socialJoin";
 	}
 	
 }

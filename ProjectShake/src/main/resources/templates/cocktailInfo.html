@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 <head>
 <title>Cocktail</title>
@@ -7,6 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
 <link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/font.css" />
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
@@ -21,24 +21,43 @@
 			<!-- 검색 기능 틀-->
 			<div class="input-group">
 				<input type="text" class="form-control rounded" id="search"
-					placeholder="Search" aria-label="Search"
+					placeholder="Search" aria-label="Search" list="movie-options"
 					aria-describedby="search-addon" style="margin-right: 10px;" />
 				<button id="searchBtn" class="btn btn-outline-primary">search</button>
 			</div>
 			<br>
 			<!--칵테일 정보 토글 임시데이터-->
 
-			<div id="cocktailPrv">
-				<details id="cockDetail" th:each="b:${list}">
+			<div id="cocktailPrv" class="fontArea">
+				<details class="cockDetail" th:each="b:${list}">
 					<!--summary에 칵테일 이름-->
+					<input type="hidden" class="cockNames" th:value="${b.cock_idx}"
+						name="cock_idx">
 					<summary th:text="${b.cock_name}">임시데이터1</summary>
 					<!--각 p태그에 칵테일정보-->
-					<P th:text="${b.cock_desc}"></P>
+					<p>
+						재료 : <span th:text="${b.cock_ingredient}"></span>
+					</p>
+					<p>
+						제조법 : <span th:text="${b.cock_desc}"></span>
+					</p>
 					<img th:src="${b.cock_image}" style="height: 200px; width: 200px">
 					<!-- 칵테일 차트 보여주기 -->
-					<div>
-						<canvas id="cockInfoChart"></canvas>
+					<div style="max-width: 300px">
+						<canvas class="cockInfoChart"></canvas>
 					</div>
+					<form action="cockTasteAccess" method="get">
+						<input type="hidden" th:value="${b.cock_idx}" name="cock_idx">
+						<input type="hidden" th:value="${session.loginMember.user_id}"
+							name="user_id"> 단맛 : <input type="number" min="1" max="10"
+							name="sweet"> 신맛 : <input type="number" min="1" max="10"
+							name="sour"> 쓴맛 : <input type="number" min="1" max="10"
+							name="bitter"> 짠맛 : <input type="number" min="1" max="10"
+							name="salty"> 매운맛 : <input type="number" min="1" max="10"
+							name="spicy"> 떫은맛 : <input type="number" min="1" max="10"
+							name="puckery"> <br> <br> <input type="submit"
+							value="맛평가 제출">
+					</form>
 				</details>
 			</div>
 			<hr />

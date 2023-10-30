@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.smhrd.shake.entity.CommunityComment;
 import com.smhrd.shake.entity.CommunityInfo;
 import com.smhrd.shake.mapper.CommunityMapper;
 
@@ -17,6 +18,10 @@ public class CommunityService {
 		return mapper.commuinityList();
 	}
 	
+	public List<CommunityInfo> communitySearch(String communitySearch){
+		return mapper.communitySearch(communitySearch);
+	}
+
 	public void communityWrite(CommunityInfo comm) {
 		mapper.communityWrite(comm);
 	}
@@ -33,4 +38,11 @@ public class CommunityService {
 		return mapper.communityDelete(comm_idx);
 	}
 	
+	public int commCmt(CommunityComment cmt) {
+		return mapper.commCmt(cmt);
+	}
+	
+	public List<CommunityComment> commCmtList(int comm_idx){
+		return mapper.commCmtList(comm_idx);
+	}
 }

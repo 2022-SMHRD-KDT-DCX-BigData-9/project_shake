@@ -36,6 +36,18 @@ public class MyRecipeService {
 		return list;		
 	}	
 	
+	public List<RecipeInfo> recipeSearch(String recipeSearch) throws IOException{
+		List<RecipeInfo> list = mapper.recipeSearch(recipeSearch);
+		for(int i = 0; i < list.size(); i++) {
+			RecipeInfo contents = list.get(i);
+			File file = new File("c:\\uploadImage\\" + contents.getRcp_image());
+			ImageConverter<File, String> converter= new ImageToBase64();
+			String fileStringValue = converter.convert(file);
+			list.get(i).setRcp_image(fileStringValue);
+		}
+		return list;
+	}
+	
 	public void recipeWrite(RecipeInfo rcp) {
 		mapper.recipeWrite(rcp);
 	}
@@ -78,5 +90,9 @@ public class MyRecipeService {
 	
 	public List<RecipeComment> recipeCmtList(int rcp_idx){
 		return mapper.recipeCmtList(rcp_idx);
+	}
+	
+	public int deleteCmt(int rcp_cmt_idx) {
+		return mapper.deleteCmt(rcp_cmt_idx);
 	}
 }

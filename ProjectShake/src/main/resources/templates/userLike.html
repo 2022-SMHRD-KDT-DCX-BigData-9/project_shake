@@ -2,11 +2,10 @@
 
 <html>
 <head>
-<title>커뮤니티 글쓰기</title>
+<title>내가 좋아요한 레시피</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
-<link rel="stylesheet" href="assets/css/main.css" />
 
 <!--bootlink-->
 <link
@@ -17,6 +16,9 @@
 <!-- 부트스트랩 CDN 링크 사진 저장-->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" href="assets/css/font.css" />
+
 </head>
 
 <body>
@@ -28,10 +30,9 @@
 		<div class="wrapper style1">
 			<div class="container">
 				<div class="row gtr-200">
-					<hr class="first" />
 					<section>
-						<header>
-							<h1 class="text-center">내가 좋아요한 레시피</h1>
+						<header class = "fontArea">
+							<h1 class="text-center" style = "font-size: 35px;" >내가 좋아요한 레시피</h1>
 							<br>
 							<div class="row">
 								<div class="col-sm-5 col-md-6">
@@ -39,16 +40,13 @@
 										style="width: 140px; height: 140px; float: right;" alt="image">
 								</div>
 								<div class="col-sm-5 col-md-6">
-									<strong>나만의 시크릿 칵테일 레시피를 공유하세요!</strong> <br>
-									<p>
-										좋아요를 많이 받은 레시피는<br>인기순위에 등록됩니다<br>당신의 센스를 보여주세요!
-									</p>
+									<strong>내가 좋아요한 레시피를 확인해보세요</strong> <br>
+									<p>레시피를 참고해서 나만의 레시피를 만들어보세요!</p>
 								</div>
 							</div>
 						</header>
 						<!--게시판기본틀임시-->
-						<!--게시판기본틀임시-->
-						<div class="row gtr-200">
+						<div class="row gtr-200 fontArea">
 							<div class="row row-cols-1 row-cols-md-3 g-4">
 								<div class="col" th:each="b : ${recipes}">
 									<div class="card h-100">
@@ -69,16 +67,19 @@
 								</div>
 							</div>
 						</div>
-						<div class="pagination">
-							<span th:if="${page > 1}"> <a
-								th:href="@{/myRecipe(page=${page - 1})}">Previous</a>
-							</span> <span th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
-								<a th:href="@{/myRecipe(page=${pageNumber})}"
-								th:text="${pageNumber}"></a>
-							</span> <span th:if="${page < totalPages}"> <a
-								th:href="@{/myRecipe(page=${page + 1})}">Next</a>
-							</span>
-						</div>
+						<nav aria-label="Page navigation example">
+							<div class="pagination d-flex justify-content-center">
+								<span th:if="${page > 1}"> <a
+									th:href="@{/userLike(page=${page - 1})}">Previous</a>
+								</span> <span
+									th:each="pageNumber : ${#numbers.sequence(1, totalPages)}">
+									<a th:href="@{/userLike(page=${pageNumber})}"
+									th:text="${pageNumber}"></a>
+								</span> <span th:if="${page < totalPages}"> <a
+									th:href="@{/userLike(page=${page + 1})}">Next</a>
+								</span>
+							</div>
+						</nav>
 					</section>
 				</div>
 

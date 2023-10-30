@@ -6,13 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.shake.entity.RecipeComment;
 import com.smhrd.shake.entity.RecipeLikes;
-import com.smhrd.shake.entity.RecipeTasteInfo;
 import com.smhrd.shake.entity.RecipeTasteInfoAVG;
 import com.smhrd.shake.service.MyRecipeService;
 
