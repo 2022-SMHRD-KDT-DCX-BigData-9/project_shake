@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.smhrd.shake.entity.CocktailInfo;
-import com.smhrd.shake.entity.CocktailTasteInfo;
 import com.smhrd.shake.entity.UserInfo;
 import com.smhrd.shake.service.CocktailService;
 
@@ -28,11 +27,5 @@ public class CocktailController {
 			model.addAttribute("list", list);
 		}
 		return "cocktailInfo";
-	}
-	
-	@GetMapping("/cockTasteAccess")
-	public String cockTasteAccess(CocktailTasteInfo cock) {
-		service.cockTasteAccess(cock);
-		return "redirect:/cocktailInfo";
 	}
 }

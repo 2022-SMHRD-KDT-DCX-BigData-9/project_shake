@@ -13,6 +13,10 @@ function kakaoLogin() {
 						document
 							.getElementById('user-info').innerHTML = 'ID: '
 							+ response.id
+							+ ', Name: '
+							+ response.properties.nickname
+							+ ', Email: '
+							+ response.kaccount_email;
 						// 서버로 사용자 정보 전송
 						$.ajax({
 							url: '/user_info_kakao', // POST 요청을 처리할 서버 URL 변경

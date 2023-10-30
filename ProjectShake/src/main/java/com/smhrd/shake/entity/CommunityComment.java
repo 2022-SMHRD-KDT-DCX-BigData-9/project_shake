@@ -10,5 +10,5 @@ public class CommunityComment {
 	private int comm_idx;
 	private String cmt_content;
 	private Date create_at;
-	private String user_nick;
+	private String user_id;
 }

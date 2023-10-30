@@ -13,7 +13,6 @@ import com.smhrd.shake.entity.RecipeTasteInfoAVG;
 @Mapper
 public interface MyRecipeMapper {
 	public List<RecipeInfo> recipeList();
-	public List<RecipeInfo> recipeSearch(String recipeSearch);
 	public void recipeWrite(RecipeInfo rcp);
 	public RecipeInfo recipeContent(int rcp_idx);
 	public Integer checkLike(RecipeLikes like);
@@ -25,5 +24,4 @@ public interface MyRecipeMapper {
 	public int recipeAssess(RecipeTasteInfo rcp);
 	public int recipeCmt(RecipeComment cmt);
 	public List<RecipeComment> recipeCmtList(int rcp_idx);
-	public int deleteCmt(int rcp_cmt_idx);
 }

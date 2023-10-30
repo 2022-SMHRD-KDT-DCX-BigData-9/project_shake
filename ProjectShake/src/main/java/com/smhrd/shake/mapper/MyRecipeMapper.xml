@@ -10,28 +10,14 @@
 		GROUP BY recipe_info.rcp_idx;
 	</select>
 
-	<select id="recipeSearch" resultType="com.smhrd.shake.entity.RecipeInfo" parameterType="String">
-		SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS likes_count
-		FROM recipe_info
-		LEFT JOIN recipe_likes 
-		ON recipe_info.rcp_idx = recipe_likes.rcp_idx
-		WHERE recipe_info.rcp_name like '%${recipeSearch}%'
-		GROUP BY recipe_info.rcp_idx;
-	</select>
-
 	<insert id="recipeWrite" parameterType="com.smhrd.shake.entity.RecipeInfo">
-		insert into recipe_info (user_id, user_nick, rcp_name, rcp_ingredient, rcp_image, rcp_desc, created_at, rcp_views)
-		values (#{user_id}, #{user_nick}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image}, #{rcp_desc}, now(), 0)
+		insert into recipe_info (user_id, rcp_name, rcp_ingredient, rcp_image, rcp_desc, created_at, rcp_views)
+		values (#{user_id}, #{rcp_name}, #{rcp_ingredient}, #{rcp_image}, #{rcp_desc}, now(), 0)
 	</insert>
 
-	<select id="recipeContent" resultType="com.smhrd.shake.entity.RecipeInfo">
-		SELECT recipe_info.*, COUNT(recipe_likes.rcp_idx) AS likes_count
-		FROM recipe_info
-		LEFT JOIN recipe_likes 
-		ON recipe_info.rcp_idx = recipe_likes.rcp_idx
-		where recipe_info.rcp_idx = #{rcp_idx}
-		GROUP BY recipe_info.rcp_idx;
-		</select>
+	<select id="recipeContent" parameterType="com.smhrd.shake.entity.RecipeInfo">
+		select * from recipe_info where rcp_idx = #{rcp_idx}
+	</select>
 
 	<delete id="recipeDelete">
 		delete from recipe_info where rcp_idx = #{rcp_idx}
@@ -63,7 +49,6 @@
 			AVG(spicy) AS spicy,
 			AVG(puckery) AS puckery
 		FROM recipe_taste_info
-		WHERE rcp_idx = #{rcp_idx}
 		GROUP BY rcp_idx;
 	</select>
 	<insert id="recipeAssess" parameterType="com.smhrd.shake.entity.RecipeTasteInfo">
@@ -80,8 +65,5 @@
 		select * from recipe_comment where rcp_idx = #{rcp_idx}
 	</select>
 	
-	<delete id="deleteCmt">
-		delete from where rcp_cmt_idx = #{rcp_cmt_idx}
-	</delete>
 	
 </mapper>

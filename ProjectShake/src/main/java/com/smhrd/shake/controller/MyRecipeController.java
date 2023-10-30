@@ -54,28 +54,6 @@ public class MyRecipeController {
 		return "myRecipe";
 	}
 	
-	@GetMapping("/recipeSearch")
-	public String recipeSearch(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page, String recipeSearch) throws IOException {
-		UserInfo member = (UserInfo) session.getAttribute("loginMember");
-		if (member != null) {
-			int pageSize = 6; // 한 페이지에 표시할 항목 수
-			List<RecipeInfo> recipes = service.recipeSearch(recipeSearch);
-			int totalRecipes = recipes.size();
-			int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
-			
-			int startIndex = (page - 1) * pageSize;
-	        int endIndex = Math.min(startIndex + pageSize, totalRecipes);
-	        
-	        List<RecipeInfo> recipesToDisplay = recipes.subList(startIndex, endIndex);
-
-	        model.addAttribute("recipes", recipesToDisplay);
-	        model.addAttribute("page", page);
-	        model.addAttribute("totalPages", totalPages);        			
-		}
-		return "myRecipe";
-	}
-	
-	
 	@PostMapping("/myRecipe/write/save")
 	public String recipeWrite(RecipeInfo rcp, @RequestPart("image") MultipartFile image) {
 		String newFileName = UUID.randomUUID().toString() + image.getOriginalFilename();
@@ -113,13 +91,12 @@ public class MyRecipeController {
 	
 	@GetMapping("myRecipe/like")
 	public String recipeLike(RecipeLikes like) {
-		int rcp_idx = like.getRcp_idx();
 		if (like.getRcp_likes().equals("0")) {
 			service.recipeLike(like);
 		} else {
 			service.recipeDislike(like);
 		}
-		return "redirect:/myRecipe/" + rcp_idx;
+		return "redirect:/myRecipe";
 	}
 	
 	@GetMapping("myRecipe/recipeAssess")
@@ -137,11 +114,7 @@ public class MyRecipeController {
 		return "redirect:/myRecipe/"+rcp_idx;
 	}
 	
-	@GetMapping("myRecipe/deleteCmt")
-	public String deleteCmt(int rcp_cmt_idx) {
-		int rcp = service.deleteCmt(rcp_cmt_idx);
-		return "redirect:/myRecipe/";
-				//+rcp_idx;
-	}
+	
+	
 	
 }

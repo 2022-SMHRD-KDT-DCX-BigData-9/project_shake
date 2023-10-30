@@ -1,5 +1,3 @@
-// 이거 뭐지...?
-
 //id가 preImage인 img 태그 요소를 가져오기.
 let preImage = document.getElementById("preImage");
 let photo = document.getElementById("photo");

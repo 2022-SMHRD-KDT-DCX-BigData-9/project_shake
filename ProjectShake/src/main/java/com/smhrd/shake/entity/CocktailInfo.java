@@ -9,5 +9,4 @@ public class CocktailInfo {
 	private String cock_ingredient;
 	private String cock_desc;
 	private String cock_image;
-	private String cock_nick;
 }

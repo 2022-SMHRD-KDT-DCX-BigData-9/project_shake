@@ -1,5 +1,3 @@
-// 레시피 게시판의 조회수 기능
-
 $(function() {
 	let rcp_idx = $("#rcp_idx").val();
 	

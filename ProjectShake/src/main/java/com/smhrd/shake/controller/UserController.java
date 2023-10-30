@@ -8,11 +8,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.smhrd.shake.entity.RecipeInfo;
 import com.smhrd.shake.entity.UserInfo;
@@ -52,7 +50,7 @@ public class UserController {
 		session.invalidate();
 		return "redirect:/";
 	}
-
+	
 	@PostMapping("userUpdate/update")
 	public String update(UserInfo user, HttpSession session) {
 		int num = service.update(user);
@@ -62,10 +60,9 @@ public class UserController {
 		}
 		return "redirect:/";
 	}
-
+	
 	@GetMapping("/userLike")
-	public String userLike(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page)
-			throws IOException {
+	public String userLike(HttpSession session, Model model, @RequestParam(defaultValue = "1") int page) throws IOException {
 		UserInfo member = (UserInfo) session.getAttribute("loginMember");
 		String user = member.getUser_id();
 		if (member != null) {
@@ -73,45 +70,16 @@ public class UserController {
 			List<RecipeInfo> recipes = service.userLike(user);
 			int totalRecipes = recipes.size();
 			int totalPages = (int) Math.ceil((double) totalRecipes / pageSize);
-
+			
 			int startIndex = (page - 1) * pageSize;
-			int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+	        int endIndex = Math.min(startIndex + pageSize, totalRecipes);
+	        
+	        List<RecipeInfo> recipesToDisplay = recipes.subList(startIndex, endIndex);
 
-			List<RecipeInfo> recipesToDisplay = recipes.subList(startIndex, endIndex);
-
-			model.addAttribute("recipes", recipesToDisplay);
-			model.addAttribute("page", page);
-			model.addAttribute("totalPages", totalPages);
+	        model.addAttribute("recipes", recipesToDisplay);
+	        model.addAttribute("page", page);
+	        model.addAttribute("totalPages", totalPages);        			
 		}
 		return "userLike";
 	}
-	
-	@PostMapping("/socialJoin")
-	public String socialJoin(HttpSession session, UserInfo user) {
-		String social_id = (String) session.getAttribute("social_id");
-		System.out.println(user);
-		System.out.println(social_id);
-		int row = service.socialJoin(user, social_id);
-		if (row >0) {
-			session.setAttribute("loginMember", user);
-			System.out.println("회원가입 성공");
-		} else {
-			System.out.println("회원 가입 실패");
-		}
-		return "redirect:/login";
-	}
-	
-	@GetMapping("/deleteUser")
-	public String deleteUser(HttpSession session, String user_id) {
-		UserInfo user = (UserInfo) session.getAttribute("loginMember");
-		int row = service.deleteUser(user.getUser_id());
-		if (row > 0) {
-			System.out.println("회원탈퇴 완료");
-			return "redirect:/";
-		} else {
-			System.out.println("회원탈퇴 실패");
-			return "redirect:/userUpdate";
-		}
-	}
-
 }
